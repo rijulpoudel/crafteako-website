@@ -58,7 +58,7 @@ export default function ContactPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_KEY_HERE",
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
           name: fields.name,
           email: fields.email,
           eventType: fields.eventType,
