@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { background: #ccc; padding: 20px; display: flex; gap: 20px; }
+  .box { width: 300px; height: 300px; background: white; border: 1px solid #999; }
+  img, svg { width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div class="box">
+<b>Target</b>
+<img src="/Untitled%20design.svg" />
+</div>
+<div class="box">
+<b>My New Geo 3</b>
+<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="logo-mask3">
+      <rect width="100" height="100" fill="white" />
+      <path d="M 61.3 47.4 A 18 18 0 1 0 51.2 71.9" fill="none" stroke="black" stroke-width="15" stroke-linecap="round" />
+      <circle cx="45" cy="55" r="5" fill="black" />
+      <line x1="95" y1="5" x2="45" y2="55" stroke="black" stroke-width="2" />
+    </mask>
+  </defs>
+  <!-- Concave neck teardrop -->
+  <path d="M 95 5 
+           Q 60 20 37.7 15.7 
+           A 40 40 0 1 0 84.3 62.3 
+           Q 85 45 95 5 Z" 
+        fill="#38526B" mask="url(#logo-mask3)" />
+</svg>
+</div>
+
+</body>
+</html>
