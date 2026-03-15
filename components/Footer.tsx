@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { useCursorContext } from "@/lib/cursorContext";
 
@@ -15,6 +16,7 @@ export default function Footer() {
 
   return (
     <footer
+      data-theme="dark"
       style={{
         backgroundColor: "#232323",
         padding: "100px 0 48px",
@@ -40,19 +42,6 @@ export default function Footer() {
             }}
           >
             {"Every frame\ntells a story."}
-          </p>
-
-          <p
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontSize: "0.75rem",
-              letterSpacing: "0.6em",
-              color: "rgba(228, 225, 219, 0.6)",
-              marginTop: "40px",
-              textTransform: "uppercase",
-            }}
-          >
-            CRAFTEAKO
           </p>
         </div>
 
@@ -125,21 +114,43 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* CENTER — Decorative vertical line */}
+          {/* CENTER — Motto + logo */}
           <div
             style={{
               display: "flex",
+              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              gap: "18px",
             }}
           >
-            <div
+            <p
               style={{
-                width: "1px",
-                height: "80px",
-                backgroundColor: "rgba(228, 225, 219, 0.15)",
+                fontFamily: "var(--font-playfair)",
+                fontStyle: "italic",
+                fontSize: "0.85rem",
+                color: "rgba(228, 225, 219, 0.8)",
+                textAlign: "center",
               }}
-            />
+            >
+              Every frame tells a story.
+            </p>
+
+            <MagneticButton>
+              <div
+                onMouseEnter={() => setState("visit")}
+                onMouseLeave={() => setState("default")}
+                style={{ display: "inline-flex", alignItems: "center" }}
+              >
+                <Image
+                  src="/logo-light.svg"
+                  alt="Crafteako"
+                  width={80}
+                  height={80}
+                  style={{ objectFit: "contain" }}
+                />
+              </div>
+            </MagneticButton>
           </div>
 
           {/* RIGHT — Contact info */}
@@ -234,9 +245,6 @@ export default function Footer() {
           .footer-cols {
             grid-template-columns: 1fr;
             gap: 40px;
-          }
-          .footer-cols > div:nth-child(2) {
-            display: none;
           }
           .footer-cols > div:last-child {
             text-align: left;

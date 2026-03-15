@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import MagneticButton from "@/components/ui/MagneticButton";
 import { useCursorContext } from "@/lib/cursorContext";
@@ -55,18 +56,18 @@ export default function Navbar() {
         <MagneticButton>
           <Link
             href="/"
+            className="flex items-center"
             onMouseEnter={() => setState("visit")}
             onMouseLeave={() => setState("default")}
-            style={{
-              fontFamily: "var(--font-playfair)",
-              fontSize: "0.85rem",
-              letterSpacing: "0.3em",
-              color: "#232323",
-              textDecoration: "none",
-              fontWeight: 400,
-            }}
           >
-            CRAFTEAKO
+            <Image
+              src="/logo-dark.svg"
+              alt="Crafteako"
+              width={36}
+              height={36}
+              style={{ objectFit: "contain" }}
+              priority
+            />
           </Link>
         </MagneticButton>
 

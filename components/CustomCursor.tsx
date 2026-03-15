@@ -1,10 +1,13 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "@/lib/gsap";
 import { useCursorContext } from "@/lib/cursorContext";
 import type { CursorState } from "@/lib/cursorContext";
+import logoSrc from "@/public/logo-dark.svg";
+import logoLightSrc from "@/public/logo-light.svg";
 
 const TRAIL_COUNT = 10;
 
@@ -32,11 +35,11 @@ const LABEL_MAP: Record<CursorState, string> = {
   play: "▶",
 };
 
-const isLabeled = (s: CursorState) => s !== "default";
 const isPlay = (s: CursorState) => s === "play";
 
 export default function CustomCursor() {
   const { state } = useCursorContext();
+  const [isOverDark, setIsOverDark] = useState(false);
 
   // Refs for all 10 trail dots
   const trailRefs = useRef<(HTMLDivElement | null)[]>(
@@ -54,6 +57,7 @@ export default function CustomCursor() {
   const prevPos = useRef({ x: 0, y: 0 });
   const velocity = useRef({ x: 0, y: 0 });
   const stopTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isOverDarkRef = useRef(false);
 
   useEffect(() => {
     // ── LAYER 1 + 2: mouse tracking & GSAP ticker ──────────────────────────
@@ -67,6 +71,14 @@ export default function CustomCursor() {
         duration: 0.1,
         ease: "power3.out",
       });
+
+      // Layer 0.5: context-aware dark theme detection for logo color flip
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      const dark = el?.closest('[data-theme="dark"]') !== null;
+      if (dark !== isOverDarkRef.current) {
+        isOverDarkRef.current = dark;
+        setIsOverDark(dark);
+      }
 
       // Layer 2: velocity stretch
       velocity.current.x = e.clientX - prevPos.current.x;
@@ -148,7 +160,7 @@ export default function CustomCursor() {
               backgroundColor: "#232323",
               opacity: DOT_OPACITIES[idx],
               pointerEvents: "none",
-              zIndex: 9998,
+              zIndex: 9997,
               transform: "translate(-50%, -50%)",
               willChange: "transform",
             }}
@@ -168,59 +180,65 @@ export default function CustomCursor() {
           top: 0,
           left: 0,
           pointerEvents: "none",
-          zIndex: 9999,
+          zIndex: 9998,
+          width: "26px",
+          height: "26px",
           transform: "translate(-50%, -50%)",
           willChange: "transform",
         }}
       >
-        {/* ── LAYER 3: Framer Motion pill morphing ── */}
-        <motion.div
-          variants={{
-            default: {
-              width: 10,
-              height: 10,
-              backgroundColor: "transparent",
-              border: "1.5px solid #232323",
-              borderRadius: "50%",
-              padding: "0px",
-            },
-            labeled: {
-              width: "auto",
-              height: 28,
-              backgroundColor: "#232323",
-              border: "none",
-              borderRadius: "999px",
-              padding: "6px 16px",
-            },
-            play: {
-              width: 60,
-              height: 60,
-              backgroundColor: "#232323",
-              border: "none",
-              borderRadius: "50%",
-              padding: "0px",
-            },
-          }}
-          animate={
-            isPlay(state) ? "play" : isLabeled(state) ? "labeled" : "default"
-          }
-          transition={{ type: "spring", stiffness: 400, damping: 28 }}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-            whiteSpace: "nowrap",
-          }}
-        >
-          <AnimatePresence mode="wait">
-            {isLabeled(state) && (
+        <AnimatePresence mode="wait">
+          {state === "default" ? (
+            <motion.div
+              key="cursor-logo"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, width: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              style={{ width: "26px", height: "26px" }}
+            >
+              <Image
+                src={isOverDark ? logoLightSrc : logoSrc}
+                alt="Crafteako cursor"
+                width={26}
+                height={26}
+                style={{
+                  width: "26px",
+                  height: "26px",
+                  objectFit: "contain",
+                  transition: "opacity 0.3s ease",
+                  filter: isOverDark
+                    ? "brightness(0) saturate(100%) invert(1)"
+                    : "brightness(0) saturate(100%)",
+                }}
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="cursor-pill"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.18, ease: "easeOut" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                width: isPlay(state) ? 60 : "auto",
+                height: isPlay(state) ? 60 : 28,
+                backgroundColor: "#232323",
+                borderRadius: isPlay(state) ? "50%" : "999px",
+                padding: isPlay(state) ? "0px" : "6px 16px",
+              }}
+            >
               <motion.span
                 key={state}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ delay: 0.08, duration: 0.15 }}
+                transition={{ duration: 0.15 }}
                 style={{
                   fontFamily: "var(--font-playfair)",
                   fontStyle: isPlay(state) ? "normal" : "italic",
@@ -232,9 +250,9 @@ export default function CustomCursor() {
               >
                 {LABEL_MAP[state]}
               </motion.span>
-            )}
-          </AnimatePresence>
-        </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   );

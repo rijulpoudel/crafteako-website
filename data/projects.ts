@@ -24,8 +24,7 @@ export const projects: Project[] = [
     firstName: "Sofia",
     lastName: "& James",
     type: "Wedding",
-    coverImage:
-      "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&q=85",
+    coverImage: "crafteako/projects/sofia-james/cover",
     coverImageBlur:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUEB//EAB8QAAICAQUBAAAAAAAAAAAAAAECAAMEERIhMf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCl3FmkS2sMxALRiujSj2K9cj6gRJnR2YMbcWFIIJ4IIPIgg8EEHggg/9k=",
     description:
@@ -35,42 +34,42 @@ export const projects: Project[] = [
     format: "Wedding Day (2 Days)",
     albumImages: [
       {
-        src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&q=80",
+        src: "crafteako/projects/sofia-james/img-01",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 1100,
         alt: "Sofia and James wedding ceremony",
       },
       {
-        src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&q=80",
+        src: "crafteako/projects/sofia-james/img-02",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 600,
         alt: "Wedding reception details",
       },
       {
-        src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800&q=80",
+        src: "crafteako/projects/sofia-james/img-03",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 1200,
         alt: "Bride and groom portrait",
       },
       {
-        src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&q=80",
+        src: "crafteako/projects/sofia-james/img-04",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 900,
         alt: "Wedding floral arrangements",
       },
       {
-        src: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=800&q=80",
+        src: "crafteako/projects/sofia-james/img-05",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 700,
         alt: "First dance moment",
       },
       {
-        src: "https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=800&q=80",
+        src: "crafteako/projects/sofia-james/img-06",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 1050,
@@ -83,8 +82,7 @@ export const projects: Project[] = [
     firstName: "Marcus",
     lastName: "Chen",
     type: "Graduation",
-    coverImage:
-      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=85",
+    coverImage: "crafteako/projects/marcus-chen/cover",
     coverImageBlur:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUHBP/EAB4QAAICAgMBAAAAAAAAAAAAAAECAAMEERIxQf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCis7Kjt2tQhHNJ5eWRXHRIHJLEFiMDJIGT7gAASSSST6miiAf/2Q==",
     description:
@@ -94,21 +92,21 @@ export const projects: Project[] = [
     format: "Graduation Session",
     albumImages: [
       {
-        src: "https://images.unsplash.com/photo-1627556704302-624286467c65?w=800&q=80",
+        src: "crafteako/projects/marcus-chen/img-01",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 1000,
         alt: "Marcus at graduation ceremony",
       },
       {
-        src: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
+        src: "crafteako/projects/marcus-chen/img-02",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 800,
         alt: "Graduation cap and gown portrait",
       },
       {
-        src: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&q=80",
+        src: "crafteako/projects/marcus-chen/img-03",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 1100,
@@ -121,8 +119,7 @@ export const projects: Project[] = [
     firstName: "Aria",
     lastName: "Williams",
     type: "Portrait",
-    coverImage:
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1200&q=85",
+    coverImage: "crafteako/projects/aria-williams/cover",
     coverImageBlur:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQQGAv/EABsQAAICAwEAAAAAAAAAAAAAAAABAgMREyH/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCSs7VZRWowXBBLLHJHXQI5JJwBgZJAyfcgASSSSf/Z",
     description:
@@ -132,21 +129,21 @@ export const projects: Project[] = [
     format: "2-Hour Portrait Session",
     albumImages: [
       {
-        src: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80",
+        src: "crafteako/projects/aria-williams/img-01",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 1200,
         alt: "Aria portrait close-up",
       },
       {
-        src: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80",
+        src: "crafteako/projects/aria-williams/img-02",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 1000,
         alt: "Aria natural light portrait",
       },
       {
-        src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
+        src: "crafteako/projects/aria-williams/img-03",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 900,
@@ -159,8 +156,7 @@ export const projects: Project[] = [
     firstName: "Nova",
     lastName: "Scott",
     type: "Music Video",
-    coverImage:
-      "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&q=85",
+    coverImage: "crafteako/projects/nova-mv/cover",
     coverImageBlur:
       "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQQGA//EABsQAAICAwEAAAAAAAAAAAAAAAABAgMREiH/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCTtbRZRWowbBCLHJGnXQI5JJIA2MkgZPuQASSSSf/Z",
     description:
@@ -170,14 +166,14 @@ export const projects: Project[] = [
     format: "Music Video (Director's Cut)",
     albumImages: [
       {
-        src: "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80",
+        src: "crafteako/projects/nova-mv/img-01",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 900,
         alt: "Nova Scott music video shoot",
       },
       {
-        src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80",
+        src: "crafteako/projects/nova-mv/img-02",
         blur: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=",
         width: 800,
         height: 800,

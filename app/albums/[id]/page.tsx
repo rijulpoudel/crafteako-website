@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { motion, AnimatePresence } from "framer-motion";
 import { projects } from "@/data/projects";
 import { useCursorContext } from "@/lib/cursorContext";
@@ -85,12 +85,14 @@ export default function AlbumPage() {
           }}
         >
           {/* Cover image */}
-          <Image
+          <CldImage
             src={project.coverImage}
             alt={`${project.firstName} ${project.lastName} — ${project.type}`}
             fill
-            priority
+            priority={true}
             sizes="100vw"
+            format="auto"
+            quality="auto"
             style={{ objectFit: "cover", objectPosition: "center" }}
             placeholder="blur"
             blurDataURL={project.coverImageBlur}
@@ -316,16 +318,18 @@ export default function AlbumPage() {
                   if (e.key === "Enter" || e.key === " ") openLightbox(i);
                 }}
               >
-                <Image
+                <CldImage
                   src={img.src}
                   alt={img.alt}
                   width={img.width}
                   height={img.height}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  format="auto"
+                  quality="auto"
                   style={{ width: "100%", height: "auto", display: "block" }}
                   placeholder="blur"
                   blurDataURL={img.blur}
-                  loading={i < 3 ? "eager" : "lazy"}
+                  loading="lazy"
                 />
               </div>
             ))}
@@ -374,11 +378,13 @@ export default function AlbumPage() {
                 lineHeight: 0,
               }}
             >
-              <Image
+              <CldImage
                 src={project.albumImages[lightboxIndex].src}
                 alt={project.albumImages[lightboxIndex].alt}
                 width={project.albumImages[lightboxIndex].width}
                 height={project.albumImages[lightboxIndex].height}
+                format="auto"
+                quality="auto"
                 style={{
                   maxHeight: "80vh",
                   maxWidth: "90vw",

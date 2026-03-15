@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useLayoutEffect } from "react";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
@@ -76,12 +76,14 @@ export default function VisionSection() {
             }}
             className="vision-photo-wrapper"
           >
-            <Image
-              src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400&q=80"
+            <CldImage
+              src="crafteako/vision/portrait"
               alt="Crafteako photographer portrait"
               width={400}
               height={560}
               sizes="(max-width: 768px) 80vw, 30vw"
+              format="auto"
+              quality="auto"
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k="
               style={{

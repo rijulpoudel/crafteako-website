@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useLayoutEffect, useState, useCallback } from "react";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import { useCursorContext } from "@/lib/cursorContext";
@@ -249,15 +249,17 @@ export default function ProjectShowcase() {
               style={{ display: "block", width: "100%", height: "100%" }}
               aria-label={`View ${project.firstName} ${project.lastName} album`}
             >
-              <Image
+              <CldImage
                 src={project.coverImage}
                 alt={`${project.firstName} ${project.lastName} — ${project.type}`}
                 fill
-                sizes="46vw"
+                sizes="(max-width: 768px) 100vw, 46vw"
+                loading="lazy"
+                format="auto"
+                quality="auto"
                 style={{ objectFit: "cover", objectPosition: "center" }}
                 placeholder="blur"
                 blurDataURL={project.coverImageBlur}
-                priority={i === 0}
               />
             </Link>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import { motion, AnimatePresence, type Variants } from "framer-motion";
 
 const ROTATING_WORDS = ["vision", "moments", "memories"];
@@ -41,6 +41,7 @@ export default function HeroSection() {
 
   return (
     <section
+      data-theme="dark"
       style={{
         position: "relative",
         width: "100%",
@@ -53,12 +54,14 @@ export default function HeroSection() {
       }}
     >
       {/* Full-bleed background image */}
-      <Image
-        src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=2000&q=80"
+      <CldImage
+        src="crafteako/hero/hero-bg"
         alt="Crafteako hero — wedding photography"
         fill
-        priority
+        priority={true}
         sizes="100vw"
+        format="auto"
+        quality="auto"
         style={{ objectFit: "cover", objectPosition: "center" }}
         placeholder="blur"
         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUEB//EAB8QAAICAQUBAAAAAAAAAAAAAAECAAMEERIhMf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCl3FmkS2sMxALRiujSj2K9cj6gRJnR2YMbcWFIIJ4IIPIgg8EEHggg/9k="
