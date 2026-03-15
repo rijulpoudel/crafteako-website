@@ -135,7 +135,7 @@ export const projects: Project[] = [
   {
     id: "sagar",
     firstName: "Sagar",
-    lastName: "Adhikari",
+    lastName: "Shrestha",
     type: "Graduation",
     coverImage: cdn("sagar", "cover"),
     coverImageBlur: BLUR_PLACEHOLDER,
@@ -171,7 +171,7 @@ export const projects: Project[] = [
   {
     id: "sarthak",
     firstName: "Sarthak",
-    lastName: "Karki",
+    lastName: "Baral",
     type: "Event",
     coverImage: cdn("sarthak", "cover"),
     coverImageBlur: BLUR_PLACEHOLDER,
@@ -207,7 +207,7 @@ export const projects: Project[] = [
   {
     id: "sneha",
     firstName: "Sneha",
-    lastName: "Bhandari",
+    lastName: "Shrestha",
     type: "Portrait",
     coverImage: cdn("sneha", "cover"),
     coverImageBlur: BLUR_PLACEHOLDER,
@@ -243,7 +243,7 @@ export const projects: Project[] = [
   {
     id: "xavier",
     firstName: "Xavier",
-    lastName: "Lama",
+    lastName: "Murray",
     type: "Music Video",
     coverImage: cdn("xavier", "cover"),
     coverImageBlur: BLUR_PLACEHOLDER,
