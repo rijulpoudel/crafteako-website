@@ -176,7 +176,7 @@ export default function Footer() {
                 marginBottom: "8px",
               }}
             >
-              hello@crafteako.com
+              info@crafteako.com
             </p>
             <p
               style={{
@@ -185,7 +185,7 @@ export default function Footer() {
                 color: "rgba(228, 225, 219, 0.5)",
               }}
             >
-              Available Worldwide
+              Available on email for inquiries, bookings, or just to say hi!
             </p>
           </div>
         </div>
@@ -210,7 +210,7 @@ export default function Footer() {
               color: "rgba(228, 225, 219, 0.3)",
             }}
           >
-            © 2025 Crafteako. All rights reserved.
+            © 2026 Crafteako. All rights reserved.
           </p>
           <p
             style={{
