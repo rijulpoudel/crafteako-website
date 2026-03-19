@@ -3,7 +3,6 @@
 import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { gsap } from "@/lib/gsap";
 import { useCursorContext } from "@/lib/cursorContext";
 import type { CursorState } from "@/lib/cursorContext";
 import logoSrc from "@/public/logo-dark.svg";
@@ -14,7 +13,7 @@ const TRAIL_COUNT = 10;
 // Lerp factors increase with index so each dot lags more than the one before
 const LERP_FACTORS = Array.from(
   { length: TRAIL_COUNT },
-  (_, i) => 0.12 + i * 0.04,
+  (_, i) => 0.25 + i * 0.04,
 );
 
 // Dot sizes decrease with index: 10px tapering to ~3.7px
@@ -46,94 +45,71 @@ export default function CustomCursor() {
     Array.from({ length: TRAIL_COUNT }, () => null),
   );
 
-  // Leader ref used for velocity stretch (dot 0)
+  // Leader ref used for context-aware states
   const leaderRef = useRef<HTMLDivElement | null>(null);
 
-  // Shared position storage updated every GSAP ticker frame
-  const positions = useRef(
-    Array.from({ length: TRAIL_COUNT }, () => ({ x: 0, y: 0 })),
-  );
-
-  const prevPos = useRef({ x: 0, y: 0 });
-  const velocity = useRef({ x: 0, y: 0 });
-  const stopTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isOverDarkRef = useRef(false);
 
   useEffect(() => {
-    // ── LAYER 1 + 2: mouse tracking & GSAP ticker ──────────────────────────
+    let targetX = -100;
+    let targetY = -100;
+    const currentPositions = Array.from({ length: TRAIL_COUNT }, () => ({ x: -100, y: -100 }));
+    let animationFrameId: number;
+
     const onMouseMove = (e: MouseEvent) => {
-      // Layer 1: update leader position
-      positions.current[0] = { x: e.clientX, y: e.clientY };
+      targetX = e.clientX;
+      targetY = e.clientY;
 
-      gsap.to(leaderRef.current, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1,
-        ease: "power3.out",
-      });
+      // Ensure first interaction snaps immediately if cursor wasn't active
+      if (currentPositions[0].x === -100) {
+        currentPositions.forEach(p => {
+          p.x = e.clientX;
+          p.y = e.clientY;
+        });
+      }
 
-      // Layer 0.5: context-aware dark theme detection for logo color flip
+      // Context-aware dark theme detection for logo color flip
       const el = document.elementFromPoint(e.clientX, e.clientY);
       const dark = el?.closest('[data-theme="dark"]') !== null;
       if (dark !== isOverDarkRef.current) {
         isOverDarkRef.current = dark;
         setIsOverDark(dark);
       }
-
-      // Layer 2: velocity stretch
-      velocity.current.x = e.clientX - prevPos.current.x;
-      velocity.current.y = e.clientY - prevPos.current.y;
-      prevPos.current = { x: e.clientX, y: e.clientY };
-
-      const speed = Math.sqrt(
-        velocity.current.x ** 2 + velocity.current.y ** 2,
-      );
-      const angle =
-        Math.atan2(velocity.current.y, velocity.current.x) * (180 / Math.PI);
-      const stretch = Math.min(speed * 0.4, 20);
-
-      gsap.to(leaderRef.current, {
-        scaleX: 1 + stretch / 10,
-        scaleY: 1 - stretch / 30,
-        rotation: angle,
-        duration: 0.1,
-        ease: "power2.out",
-      });
-
-      // Reset stop timer — elastic snap-back when mouse stops
-      if (stopTimer.current) clearTimeout(stopTimer.current);
-      stopTimer.current = setTimeout(() => {
-        gsap.to(leaderRef.current, {
-          scaleX: 1,
-          scaleY: 1,
-          rotation: 0,
-          duration: 0.6,
-          ease: "elastic.out(1, 0.5)",
-        });
-      }, 80);
     };
 
-    // Layer 1: ticker updates ribbon dots 1–9
-    const tickerFn = () => {
+    const animate = () => {
+      // Lerp leader (dot 0) using higher physics sensitivity
+      currentPositions[0].x += (targetX - currentPositions[0].x) * 0.25;
+      currentPositions[0].y += (targetY - currentPositions[0].y) * 0.25;
+
+      if (leaderRef.current) {
+        leaderRef.current.style.transform = `translate(${currentPositions[0].x}px, ${currentPositions[0].y}px) translate(-50%, -50%)`;
+      }
+
+      // Lerp trails
       for (let i = 1; i < TRAIL_COUNT; i++) {
-        const prev = positions.current[i - 1];
-        const curr = positions.current[i];
+        const prev = currentPositions[i - 1];
+        const curr = currentPositions[i];
         const lf = LERP_FACTORS[i];
 
         curr.x += (prev.x - curr.x) * lf;
         curr.y += (prev.y - curr.y) * lf;
 
-        gsap.set(trailRefs.current[i], { x: curr.x, y: curr.y });
+        const dotRef = trailRefs.current[i];
+        if (dotRef) {
+          dotRef.style.transform = `translate(${curr.x}px, ${curr.y}px) translate(-50%, -50%)`;
+        }
       }
+
+      animationFrameId = requestAnimationFrame(animate);
     };
 
     window.addEventListener("mousemove", onMouseMove);
-    gsap.ticker.add(tickerFn);
+    animationFrameId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
-      gsap.ticker.remove(tickerFn);
-      if (stopTimer.current) clearTimeout(stopTimer.current);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 
@@ -161,14 +137,14 @@ export default function CustomCursor() {
               opacity: DOT_OPACITIES[idx],
               pointerEvents: "none",
               zIndex: 9997,
-              transform: "translate(-50%, -50%)",
+              transform: "translate(-100px, -100px) translate(-50%, -50%)", // Hide initially off-screen
               willChange: "transform",
             }}
           />
         );
       })}
 
-      {/* ── LAYER 0: Leader dot (dot 0) — velocity-stretched, context-aware ── */}
+      {/* ── LAYER 0: Leader dot (dot 0) — Context-aware ── */}
       <div
         ref={(el) => {
           trailRefs.current[0] = el;
@@ -183,7 +159,7 @@ export default function CustomCursor() {
           zIndex: 9998,
           width: "26px",
           height: "26px",
-          transform: "translate(-50%, -50%)",
+          transform: "translate(-100px, -100px) translate(-50%, -50%)", // Hide initially off-screen
           willChange: "transform",
         }}
       >

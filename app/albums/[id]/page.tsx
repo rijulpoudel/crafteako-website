@@ -80,7 +80,7 @@ export default function AlbumPage() {
           style={{
             position: "relative",
             width: "100%",
-            height: "100vh",
+            height: "130vh",
             overflow: "hidden",
           }}
         >

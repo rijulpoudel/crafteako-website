@@ -71,9 +71,44 @@ export default function Navbar() {
 
         {/* Desktop nav links */}
         <nav
-          style={{ display: "flex", gap: "clamp(24px, 3vw, 48px)" }}
+          style={{ display: "flex", gap: "clamp(24px, 3vw, 48px)", alignItems: "center" }}
           className="desktop-nav"
         >
+          {/* Instagram Icon */}
+          <MagneticButton>
+            <a
+              href="https://www.instagram.com/crafteako"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              onMouseEnter={() => setState("visit")}
+              onMouseLeave={() => setState("default")}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                color: "#232323",
+                transition: "opacity 0.3s ease",
+              }}
+              className="nav-icon-link"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+              </svg>
+            </a>
+          </MagneticButton>
+
           {NAV_LINKS.map(({ label, href }) => (
             <MagneticButton key={label}>
               <Link
@@ -177,6 +212,38 @@ export default function Navbar() {
               gap: "40px",
             }}
           >
+            {/* Custom Instagram Mobile Link */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 60 }}
+              transition={{
+                duration: 0.4,
+                delay: 0, // Appears first
+                ease: [0.76, 0, 0.24, 1],
+              }}
+            >
+              <a
+                href="https://www.instagram.com/crafteako"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  fontFamily: "var(--font-playfair)",
+                  fontSize: "clamp(2rem, 8vw, 4rem)",
+                  color: "#232323",
+                  textDecoration: "none",
+                  fontWeight: 400,
+                  letterSpacing: "-0.01em",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "16px",
+                }}
+              >
+                Instagram
+              </a>
+            </motion.div>
+
             {NAV_LINKS.map(({ label, href }, i) => (
               <motion.div
                 key={label}
@@ -185,7 +252,7 @@ export default function Navbar() {
                 exit={{ opacity: 0, x: 60 }}
                 transition={{
                   duration: 0.4,
-                  delay: i * 0.08,
+                  delay: (i + 1) * 0.08, // Offset by 1 because of Instagram
                   ease: [0.76, 0, 0.24, 1],
                 }}
               >
@@ -223,6 +290,10 @@ export default function Navbar() {
         }
         .nav-link:hover::after {
           width: 100%;
+        }
+        
+        .nav-icon-link:hover {
+          opacity: 0.6 !important;
         }
 
         @media (max-width: 767px) {

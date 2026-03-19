@@ -4,6 +4,7 @@ import "./globals.css";
 import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
+import SmoothScroll from "@/components/SmoothScroll";
 import { CursorProvider } from "@/lib/cursorContext";
 
 const playfair = Playfair_Display({
@@ -48,12 +49,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body>
-        <CursorProvider>
-          <Preloader />
-          <CustomCursor />
-          <Navbar />
-          {children}
-        </CursorProvider>
+        <SmoothScroll>
+          <CursorProvider>
+            <Preloader />
+            <CustomCursor />
+            <Navbar />
+            {children}
+          </CursorProvider>
+        </SmoothScroll>
       </body>
     </html>
   );
