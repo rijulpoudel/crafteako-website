@@ -48,8 +48,6 @@ export default function Navbar() {
           height: "72px",
           transition: "background 0.4s ease, backdrop-filter 0.4s ease",
           background: scrolled ? "rgba(245,242,237,0.85)" : "transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          WebkitBackdropFilter: scrolled ? "blur(12px)" : "none",
         }}
       >
         {/* Wordmark */}

@@ -12,18 +12,15 @@ const wordVariants: Variants = {
   enter: {
     y: 60,
     opacity: 0,
-    filter: "blur(4px)",
   },
   animate: {
     y: 0,
     opacity: 1,
-    filter: "blur(0px)",
     transition: { duration: 0.7, ease: EASE },
   },
   exit: {
     y: -60,
     opacity: 0,
-    filter: "blur(4px)",
     transition: { duration: 0.7, ease: EASE },
   },
 };

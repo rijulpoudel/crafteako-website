@@ -48,8 +48,8 @@ export default function Preloader() {
           }}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, filter: "blur(8px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1] }}
           >
             <Image

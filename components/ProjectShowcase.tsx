@@ -220,11 +220,12 @@ export default function ProjectShowcase() {
           position: "absolute",
           left: "50%",
           top: "50%",
-          transform: "translate(-50%, -50%)",
+          transform: "translate(-50%, -50%) translateZ(0)",
           width: "46vw",
           height: "68vh",
           zIndex: 5,
           willChange: "transform",
+          backfaceVisibility: "hidden",
         }}
       >
         {/* Stack all project images; crossfade between them */}
@@ -240,6 +241,7 @@ export default function ProjectShowcase() {
               borderRadius: "4px",
               overflow: "hidden",
               opacity: i === 0 ? 1 : 0,
+              pointerEvents: i === activeIndex ? "auto" : "none",
             }}
           >
             <Link

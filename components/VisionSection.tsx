@@ -51,14 +51,15 @@ export default function VisionSection() {
         ref={cardRef}
         style={{
           background: "rgba(255, 255, 255, 0.72)",
-          backdropFilter: "blur(24px) saturate(1.8)",
-          WebkitBackdropFilter: "blur(24px) saturate(1.8)",
           border: "1px solid rgba(255, 255, 255, 0.5)",
           borderRadius: "20px",
           padding: "clamp(40px, 5vw, 64px)",
           maxWidth: "940px",
           margin: "0 auto",
           boxShadow: "0 32px 80px rgba(35, 35, 35, 0.08)",
+          willChange: "transform, opacity",
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
         }}
       >
         {/* Flex row on desktop, column on mobile */}
