@@ -1,12 +1,11 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useCursorContext } from "@/lib/cursorContext";
 import type { CursorState } from "@/lib/cursorContext";
 import logoSrc from "@/public/logo-dark.svg";
-import logoLightSrc from "@/public/logo-light.svg";
 
 const TRAIL_COUNT = 10;
 
@@ -38,7 +37,6 @@ const isPlay = (s: CursorState) => s === "play";
 
 export default function CustomCursor() {
   const { state } = useCursorContext();
-  const [isOverDark, setIsOverDark] = useState(false);
 
   // Refs for all 10 trail dots
   const trailRefs = useRef<(HTMLDivElement | null)[]>(
@@ -47,8 +45,6 @@ export default function CustomCursor() {
 
   // Leader ref used for context-aware states
   const leaderRef = useRef<HTMLDivElement | null>(null);
-
-  const isOverDarkRef = useRef(false);
 
   useEffect(() => {
     let targetX = -100;
@@ -66,14 +62,6 @@ export default function CustomCursor() {
           p.x = e.clientX;
           p.y = e.clientY;
         });
-      }
-
-      // Context-aware dark theme detection for logo color flip
-      const el = document.elementFromPoint(e.clientX, e.clientY);
-      const dark = el?.closest('[data-theme="dark"]') !== null;
-      if (dark !== isOverDarkRef.current) {
-        isOverDarkRef.current = dark;
-        setIsOverDark(dark);
       }
     };
 
@@ -133,7 +121,7 @@ export default function CustomCursor() {
               width: size,
               height: size,
               borderRadius: "50%",
-              backgroundColor: "#232323",
+              backgroundColor: "#344D66",
               opacity: DOT_OPACITIES[idx],
               pointerEvents: "none",
               zIndex: 9997,
@@ -174,7 +162,7 @@ export default function CustomCursor() {
               style={{ width: "26px", height: "26px" }}
             >
               <Image
-                src={isOverDark ? logoLightSrc : logoSrc}
+                src={logoSrc}
                 alt="Crafteako cursor"
                 width={26}
                 height={26}
@@ -183,9 +171,6 @@ export default function CustomCursor() {
                   height: "26px",
                   objectFit: "contain",
                   transition: "opacity 0.3s ease",
-                  filter: isOverDark
-                    ? "brightness(0) saturate(100%) invert(1)"
-                    : "brightness(0) saturate(100%)",
                 }}
               />
             </motion.div>
@@ -204,7 +189,7 @@ export default function CustomCursor() {
                 whiteSpace: "nowrap",
                 width: isPlay(state) ? 60 : "auto",
                 height: isPlay(state) ? 60 : 28,
-                backgroundColor: "#232323",
+                backgroundColor: "#344D66",
                 borderRadius: isPlay(state) ? "50%" : "999px",
                 padding: isPlay(state) ? "0px" : "6px 16px",
               }}

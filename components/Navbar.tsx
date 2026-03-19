@@ -9,6 +9,7 @@ import { useCursorContext } from "@/lib/cursorContext";
 
 const NAV_LINKS = [
   { label: "Work", href: "/#work" },
+  { label: "Grads 2026", href: "/new-grads-2026" },
   { label: "About", href: "/#about" },
   { label: "Contact", href: "/contact" },
 ];
