@@ -103,7 +103,7 @@ export default function AlbumPage() {
             style={{
               position: "absolute",
               inset: 0,
-              backgroundColor: "rgba(0,0,0,0.35)",
+              background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%)",
               zIndex: 1,
             }}
           />
@@ -112,12 +112,13 @@ export default function AlbumPage() {
           <div
             style={{
               position: "absolute",
-              inset: 0,
+              bottom: "clamp(48px, 6vw, 96px)",
+              left: 0,
+              right: 0,
               zIndex: 2,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
               textAlign: "center",
               padding: "0 24px",
             }}
@@ -128,7 +129,8 @@ export default function AlbumPage() {
                 fontSize: "0.7rem",
                 textTransform: "uppercase",
                 letterSpacing: "0.5em",
-                color: "rgba(255,255,255,0.7)",
+                color: "rgba(255,255,255,0.9)",
+                textShadow: "0 1px 6px rgba(0,0,0,0.6)",
                 marginBottom: "20px",
               }}
             >
@@ -138,7 +140,8 @@ export default function AlbumPage() {
               style={{
                 fontFamily: "var(--font-playfair)",
                 fontSize: "clamp(3rem, 7vw, 7vw)",
-                color: "#FFFFFF",
+                color: "#ffffff",
+                textShadow: "0 1px 6px rgba(0,0,0,0.6)",
                 fontWeight: 400,
                 lineHeight: 1.1,
               }}

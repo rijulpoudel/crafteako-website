@@ -69,8 +69,7 @@ export default function HeroSection() {
         style={{
           position: "absolute",
           inset: 0,
-          background:
-            "linear-gradient(160deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%)",
+          background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%)",
           zIndex: 1,
         }}
       />
@@ -78,7 +77,7 @@ export default function HeroSection() {
       {/* Centered text block */}
       <div
         style={{
-          position: "absolute",
+          position: "relative",
           zIndex: 2,
           display: "flex",
           flexDirection: "column",
@@ -97,7 +96,8 @@ export default function HeroSection() {
             fontSize: "0.65rem",
             textTransform: "uppercase",
             letterSpacing: "0.5em",
-            color: "#FFFFFF",
+            color: "#ffffff",
+            textShadow: "0 1px 6px rgba(0,0,0,0.6)",
             marginBottom: "12px",
           }}
         >
@@ -112,7 +112,8 @@ export default function HeroSection() {
           style={{
             fontFamily: "var(--font-playfair)",
             fontSize: "5.5vw",
-            color: "#FFFFFF",
+            color: "#ffffff",
+            textShadow: "0 1px 6px rgba(0,0,0,0.6)",
             fontWeight: 400,
             lineHeight: 1.15,
           }}
@@ -145,7 +146,8 @@ export default function HeroSection() {
                 fontFamily: "var(--font-playfair)",
                 fontStyle: "italic",
                 fontSize: "5.5vw",
-                color: "#E4E1DB",
+                color: "#ffffff",
+                textShadow: "0 1px 6px rgba(0,0,0,0.6)",
                 fontWeight: 400,
                 lineHeight: 1.15,
                 position: "absolute",
@@ -164,7 +166,8 @@ export default function HeroSection() {
           style={{
             fontFamily: "var(--font-playfair)",
             fontSize: "5.5vw",
-            color: "#FFFFFF",
+            color: "#ffffff",
+            textShadow: "0 1px 6px rgba(0,0,0,0.6)",
             fontWeight: 400,
             lineHeight: 1.15,
           }}
