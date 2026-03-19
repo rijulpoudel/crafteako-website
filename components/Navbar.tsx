@@ -8,6 +8,7 @@ import MagneticButton from "@/components/ui/MagneticButton";
 import { useCursorContext } from "@/lib/cursorContext";
 
 const NAV_LINKS = [
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Work", href: "/#work" },
   { label: "Grads 2026", href: "/new-grads-2026" },
   { label: "About", href: "/#about" },
