@@ -24,6 +24,9 @@ export default function ProjectShowcase() {
 
   // Refs for each project's image element (for crossfade opacity)
   const imageRefs = useRef<(HTMLDivElement | null)[]>([]);
+  // Refs for scattered preview photos (behind the cover)
+  const scatteredLeftRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const scatteredRightRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const updateProject = useCallback((index: number, progress: number) => {
     if (index === activeIndexRef.current) return;
@@ -55,7 +58,7 @@ export default function ProjectShowcase() {
       },
     });
 
-    // Crossfade images
+    // Crossfade main cover images
     if (imageRefs.current[prev]) {
       gsap.to(imageRefs.current[prev], {
         opacity: 0,
@@ -71,6 +74,20 @@ export default function ProjectShowcase() {
         { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" },
       );
     }
+
+    // Crossfade scattered preview images
+    if (scatteredLeftRefs.current[prev]) {
+      gsap.to(scatteredLeftRefs.current[prev], { opacity: 0, duration: 0.5, ease: "power2.out" });
+    }
+    if (scatteredLeftRefs.current[index]) {
+      gsap.fromTo(scatteredLeftRefs.current[index], { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" });
+    }
+    if (scatteredRightRefs.current[prev]) {
+      gsap.to(scatteredRightRefs.current[prev], { opacity: 0, duration: 0.5, ease: "power2.out" });
+    }
+    if (scatteredRightRefs.current[index]) {
+      gsap.fromTo(scatteredRightRefs.current[index], { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" });
+    }
   }, []);
 
   useLayoutEffect(() => {
@@ -85,6 +102,12 @@ export default function ProjectShowcase() {
 
       // Show first image, hide rest
       imageRefs.current.forEach((el, i) => {
+        if (el) gsap.set(el, { opacity: i === 0 ? 1 : 0 });
+      });
+      scatteredLeftRefs.current.forEach((el, i) => {
+        if (el) gsap.set(el, { opacity: i === 0 ? 1 : 0 });
+      });
+      scatteredRightRefs.current.forEach((el, i) => {
         if (el) gsap.set(el, { opacity: i === 0 ? 1 : 0 });
       });
 
@@ -213,6 +236,92 @@ export default function ProjectShowcase() {
         }}
       />
 
+      {/* Scattered left preview photo — behind the main cover */}
+      <div
+        style={{
+          position: "absolute",
+          left: "calc(50% - 30vw)",
+          top: "calc(50% - 22vh)",
+          width: "20vw",
+          height: "28vh",
+          zIndex: 3,
+          transform: "rotate(-5deg)",
+          borderRadius: "3px",
+          overflow: "hidden",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
+          display: "none",
+        }}
+        className="scattered-photo"
+      >
+        {projects.map((project, i) => {
+          const previewSrc = project.albumImages[1]?.src ?? project.albumImages[0]?.src;
+          const previewBlur = project.albumImages[1]?.blur ?? project.coverImageBlur;
+          return (
+            <div
+              key={project.id}
+              ref={(el) => { scatteredLeftRefs.current[i] = el; }}
+              style={{ position: "absolute", inset: 0, opacity: i === 0 ? 1 : 0 }}
+            >
+              <CldImage
+                src={previewSrc}
+                alt={`${project.firstName} preview`}
+                fill
+                sizes="20vw"
+                loading="lazy"
+                format="auto"
+                quality="auto"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                placeholder="blur"
+                blurDataURL={previewBlur}
+              />
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Scattered right preview photo — behind the main cover */}
+      <div
+        style={{
+          position: "absolute",
+          left: "calc(50% + 12vw)",
+          top: "calc(50% + 6vh)",
+          width: "18vw",
+          height: "26vh",
+          zIndex: 3,
+          transform: "rotate(4deg)",
+          borderRadius: "3px",
+          overflow: "hidden",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.18)",
+          display: "none",
+        }}
+        className="scattered-photo"
+      >
+        {projects.map((project, i) => {
+          const previewSrc = project.albumImages[2]?.src ?? project.albumImages[0]?.src;
+          const previewBlur = project.albumImages[2]?.blur ?? project.coverImageBlur;
+          return (
+            <div
+              key={project.id}
+              ref={(el) => { scatteredRightRefs.current[i] = el; }}
+              style={{ position: "absolute", inset: 0, opacity: i === 0 ? 1 : 0 }}
+            >
+              <CldImage
+                src={previewSrc}
+                alt={`${project.firstName} preview`}
+                fill
+                sizes="18vw"
+                loading="lazy"
+                format="auto"
+                quality="auto"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                placeholder="blur"
+                blurDataURL={previewBlur}
+              />
+            </div>
+          );
+        })}
+      </div>
+
       {/* Center image area — velocity-distorted wrapper */}
       <div
         ref={imageWrapperRef}
@@ -266,6 +375,33 @@ export default function ProjectShowcase() {
             </Link>
           </div>
         ))}
+      </div>
+
+      {/* "Click to explore" hint — below the cover */}
+      <div
+        style={{
+          position: "absolute",
+          left: "50%",
+          top: "calc(50% + 36vh)",
+          transform: "translateX(-50%)",
+          zIndex: 10,
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+        }}
+      >
+        <p
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: "0.6rem",
+            textTransform: "uppercase",
+            letterSpacing: "0.25em",
+            color: "rgba(35,35,35,0.45)",
+            whiteSpace: "nowrap",
+          }}
+        >
+          Click cover to explore album
+        </p>
       </div>
 
       {/* Progress bar — bottom */}

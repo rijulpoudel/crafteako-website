@@ -2,7 +2,24 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { CldImage } from "next-cloudinary";
 import Footer from "@/components/Footer";
+
+const BLUR =
+  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AJQAA/9k=";
+
+// A curated selection of graduation photos for the gallery strip
+const GRAD_GALLERY = [
+  { src: "crafteako/projects/xavier/img-01", alt: "Xavier graduation photo 1" },
+  { src: "crafteako/projects/paperplane/img-02", alt: "Graduation portrait 2" },
+  { src: "crafteako/projects/bijay/img-01", alt: "Bijay graduation photo 1" },
+  { src: "crafteako/projects/xavier/img-04", alt: "Xavier graduation photo 4" },
+  { src: "crafteako/projects/paperplane/img-05", alt: "Graduation portrait 5" },
+  { src: "crafteako/projects/xavier/img-08", alt: "Xavier graduation photo 8" },
+  { src: "crafteako/projects/bijay/img-04", alt: "Bijay graduation photo 4" },
+  { src: "crafteako/projects/paperplane/img-09", alt: "Graduation portrait 9" },
+  { src: "crafteako/projects/xavier/img-12", alt: "Xavier graduation photo 12" },
+];
 
 export default function NewGradsPage() {
   return (
@@ -233,6 +250,109 @@ export default function NewGradsPage() {
         >
           *All packages include: personal print release, private online gallery, and a pre-shoot style consult call.
         </motion.p>
+      </section>
+
+      {/* ── CAPTURED MOMENTS GALLERY ── */}
+      <section
+        style={{
+          padding: "0 clamp(24px, 5vw, 80px)",
+          maxWidth: "1200px",
+          margin: "0 auto 120px",
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          style={{ textAlign: "center", marginBottom: "48px" }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontSize: "0.65rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.4em",
+              color: "rgba(35,35,35,0.5)",
+              marginBottom: "16px",
+            }}
+          >
+            Our Work
+          </p>
+          <h2
+            style={{
+              fontFamily: "var(--font-playfair)",
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontWeight: 400,
+              lineHeight: 1.15,
+            }}
+          >
+            Captured Moments
+          </h2>
+        </motion.div>
+
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "12px",
+          }}
+        >
+          {GRAD_GALLERY.map((photo, i) => (
+            <motion.div
+              key={photo.src}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.6, delay: (i % 3) * 0.1, ease: "easeOut" }}
+              style={{
+                position: "relative",
+                aspectRatio: i % 3 === 1 ? "3/4" : "4/5",
+                borderRadius: "3px",
+                overflow: "hidden",
+              }}
+            >
+              <CldImage
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                loading="lazy"
+                format="auto"
+                quality="auto"
+                style={{ objectFit: "cover", objectPosition: "center" }}
+                placeholder="blur"
+                blurDataURL={BLUR}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          style={{ textAlign: "center", marginTop: "48px" }}
+        >
+          <Link
+            href="/portfolio"
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontSize: "0.75rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.25em",
+              color: "#232323",
+              textDecoration: "none",
+              borderBottom: "1px solid rgba(35,35,35,0.4)",
+              paddingBottom: "2px",
+              transition: "border-color 0.2s ease",
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = "#232323"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(35,35,35,0.4)"; }}
+          >
+            View Full Portfolio
+          </Link>
+        </motion.div>
       </section>
 
       {/* ── BOOK CTA SECTION ── */}

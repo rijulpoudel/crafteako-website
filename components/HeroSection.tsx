@@ -5,7 +5,7 @@ import Link from "next/link";
 import { CldImage } from "next-cloudinary";
 import { motion, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
 
-const ROTATING_WORDS = ["vision", "moments", "memories"];
+const ROTATING_WORDS = ["vision", "moments", "celebrations"];
 
 const EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
 
@@ -78,6 +78,7 @@ export default function HeroSection() {
         sizes="100vw"
         format="auto"
         quality="auto"
+        className="hero-bg"
         style={{ objectFit: "cover", objectPosition: "center" }}
         placeholder="blur"
         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUEB//EAB8QAAICAQUBAAAAAAAAAAAAAAECAAMEERIhMf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oAMBAAIRAxEAPwCl3FmkS2sMxALRiujSj2K9cj6gRJnR2YMbcWFIIJ4IIPIgg8EEHggg/9k="
@@ -153,9 +154,6 @@ export default function HeroSection() {
 
         {/* Line 3 — rotating word */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
           style={{
             height: "calc(clamp(3.5rem, 8vw, 8rem) * 1.15)",
             display: "flex",
@@ -242,43 +240,46 @@ export default function HeroSection() {
         <h2
           style={{
             fontFamily: "var(--font-inter)",
-            fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)",
+            fontSize: "clamp(1.1rem, 2vw, 1.6rem)",
             color: "#ffffff",
             fontWeight: 300,
             lineHeight: 1.5,
-            letterSpacing: "0.02em",
+            letterSpacing: "0.04em",
             textShadow: "0 1px 6px rgba(0,0,0,0.6)",
           }}
         >
-          Capturing your love&apos;s legacy with an elegant, editorial, and Italian flair.
+          Celebrating your milestone with artistry, intention, and a story worth keeping.
         </h2>
 
-        {/* New Check Availability button */}
+        {/* Minimal bordered button */}
         <Link
           href="/contact"
           style={{
             display: "inline-block",
-            padding: "14px 32px",
-            backgroundColor: "#ffffff",
-            color: "#232323",
+            padding: "13px 36px",
+            backgroundColor: "transparent",
+            color: "#ffffff",
             fontFamily: "var(--font-inter)",
-            fontSize: "0.85rem",
-            fontWeight: 500,
+            fontSize: "0.75rem",
+            fontWeight: 400,
             textDecoration: "none",
-            borderRadius: "50px", // Pill-shape / smaller than previous button
+            textTransform: "uppercase",
+            letterSpacing: "0.25em",
+            border: "1px solid rgba(255,255,255,0.7)",
+            borderRadius: "2px",
             cursor: "pointer",
-            transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, color 0.3s ease",
+            transition: "border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "scale(1.03)";
-            e.currentTarget.style.backgroundColor = "#e8e5e1";
+            e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.12)";
+            e.currentTarget.style.borderColor = "#ffffff";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.transform = "scale(1)";
-            e.currentTarget.style.backgroundColor = "#ffffff";
+            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.borderColor = "rgba(255,255,255,0.7)";
           }}
         >
-          Check availability
+          Check Availability
         </Link>
       </div>
 
