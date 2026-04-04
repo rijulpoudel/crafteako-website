@@ -6,6 +6,12 @@
   --dark: #232323;
   --cream-dark: #e4e1db;
   --white: #ffffff;
+
+  /* ─── Easing Token System ─── */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-inout: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* ─── Tailwind theme bridge ──────────────────────────────────── */
@@ -92,14 +98,38 @@ img {
   }
 }
 
-/* ─── Focus visible outline (accessibility) ─────────────────── */
+/* ─── Focus visible outline — elegant inset ring ────────────── */
 :focus-visible {
-  outline: 2px solid var(--dark);
-  outline-offset: 3px;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--cream), 0 0 0 4px var(--dark);
+  border-radius: 2px;
 }
 
 /* ─── Selection styling ──────────────────────────────────────── */
 ::selection {
   background-color: var(--dark);
   color: var(--cream);
+}
+
+/* ─── Film Grain Texture Overlay ─────────────────────────────── */
+/* Fixed noise layer simulates analog grain — the mark of luxury editorial design */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9990; /* above content + lightbox, below cursor (9997) + preloader (9999) */
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 250px 250px;
+}
+
+/* ─── Image hover colour-grade shift ─────────────────────────── */
+/* Apply class .img-grade to portfolio / album images for a "comes alive" effect */
+.img-grade {
+  transition: filter 0.65s var(--ease-out);
+}
+.img-grade:hover {
+  filter: saturate(1.14) contrast(1.05);
 }

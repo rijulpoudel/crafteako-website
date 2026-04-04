@@ -144,6 +144,7 @@ export default function AlbumPage() {
                 textShadow: "0 1px 6px rgba(0,0,0,0.6)",
                 fontWeight: 400,
                 lineHeight: 1.1,
+                letterSpacing: "-0.04em",
               }}
             >
               {project.firstName} {project.lastName}
@@ -304,7 +305,7 @@ export default function AlbumPage() {
         >
           <div className="masonry-grid">
             {project.albumImages.map((img, i) => (
-              <div
+              <motion.div
                 key={i}
                 className="masonry-item"
                 onClick={() => openLightbox(i)}
@@ -316,6 +317,14 @@ export default function AlbumPage() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") openLightbox(i);
                 }}
+                initial={{ clipPath: "inset(100% 0 0 0)" }}
+                whileInView={{ clipPath: "inset(0% 0 0 0)" }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.9,
+                  ease: [0.16, 1, 0.3, 1],
+                  delay: (i % 3) * 0.08,
+                }}
               >
                 <CldImage
                   src={img.src}
@@ -325,12 +334,13 @@ export default function AlbumPage() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   format="auto"
                   quality="auto"
+                  className="img-grade"
                   style={{ width: "100%", height: "auto", display: "block" }}
                   placeholder="blur"
                   blurDataURL={img.blur}
                   loading="lazy"
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>

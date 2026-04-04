@@ -377,41 +377,51 @@ export default function ProjectShowcase() {
         ))}
       </div>
 
-      {/* "Click to explore" hint — below the cover */}
+      {/* Editorial counter — bottom right, Playfair, large and faded */}
       <div
         style={{
           position: "absolute",
-          left: "50%",
-          top: "calc(50% + 36vh)",
-          transform: "translateX(-50%)",
+          bottom: "clamp(24px, 4vw, 48px)",
+          right: "clamp(24px, 5vw, 80px)",
           zIndex: 10,
           display: "flex",
-          alignItems: "center",
-          gap: "8px",
+          alignItems: "baseline",
+          gap: "6px",
+          userSelect: "none",
         }}
       >
-        <p
+        <span
           style={{
-            fontFamily: "var(--font-inter)",
-            fontSize: "0.6rem",
-            textTransform: "uppercase",
-            letterSpacing: "0.25em",
-            color: "rgba(35,35,35,0.45)",
-            whiteSpace: "nowrap",
+            fontFamily: "var(--font-playfair)",
+            fontStyle: "italic",
+            fontSize: "clamp(2.5rem, 5vw, 4.5rem)",
+            color: "rgba(35,35,35,0.08)",
+            lineHeight: 1,
+            letterSpacing: "-0.03em",
           }}
         >
-          Click cover to explore album
-        </p>
+          {String(activeIndex + 1).padStart(2, "0")}
+        </span>
+        <span
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: "0.65rem",
+            color: "rgba(35,35,35,0.2)",
+            letterSpacing: "0.1em",
+          }}
+        >
+          / {String(projects.length).padStart(2, "0")}
+        </span>
       </div>
 
-      {/* Progress bar — bottom */}
+      {/* Progress bar — bottom (2px, with subtle glow on fill) */}
       <div
         style={{
           position: "absolute",
           bottom: 0,
           left: 0,
           right: 0,
-          height: "1px",
+          height: "2px",
           backgroundColor: "#E4E1DB",
           zIndex: 10,
         }}
@@ -423,6 +433,7 @@ export default function ProjectShowcase() {
             width: "0%",
             backgroundColor: "#232323",
             transformOrigin: "left center",
+            boxShadow: "2px 0 8px rgba(35,35,35,0.3)",
           }}
         />
       </div>

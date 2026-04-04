@@ -5,6 +5,7 @@ import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
+import PageTransition from "@/components/PageTransition";
 import { CursorProvider } from "@/lib/cursorContext";
 
 const playfair = Playfair_Display({
@@ -52,6 +53,7 @@ export default function RootLayout({
         <SmoothScroll>
           <CursorProvider>
             <Preloader />
+            <PageTransition />
             <CustomCursor />
             <Navbar />
             {children}

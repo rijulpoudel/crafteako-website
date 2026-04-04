@@ -26,12 +26,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
   return (
@@ -49,7 +46,10 @@ export default function Navbar() {
           padding: "0 clamp(24px, 5vw, 80px)",
           height: "72px",
           transition: "background 0.4s ease, backdrop-filter 0.4s ease",
-          background: scrolled ? "rgba(245,242,237,0.85)" : "transparent",
+          background: scrolled ? "rgba(245,242,237,0.82)" : "transparent",
+          backdropFilter: scrolled ? "blur(18px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(18px)" : "none",
+          // color adapts: cream text on dark hero, dark text on scrolled bar
         }}
       >
         {/* Wordmark */}
@@ -61,11 +61,11 @@ export default function Navbar() {
             onMouseLeave={() => setState("default")}
           >
             <Image
-              src="/logo-dark.svg"
+              src={scrolled ? "/logo-dark.svg" : "/logo-light.svg"}
               alt="Crafteako"
               width={36}
               height={36}
-              style={{ objectFit: "contain" }}
+              style={{ objectFit: "contain", transition: "opacity 0.3s ease" }}
               priority
             />
           </Link>
@@ -88,8 +88,8 @@ export default function Navbar() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                color: "#232323",
-                transition: "opacity 0.3s ease",
+                color: scrolled ? "#232323" : "#F5F2ED",
+                transition: "opacity 0.3s ease, color 0.4s ease",
               }}
               className="nav-icon-link"
             >
@@ -119,15 +119,16 @@ export default function Navbar() {
                 onMouseLeave={() => setState("default")}
                 style={{
                   fontFamily: "var(--font-inter)",
-                  fontSize: "0.75rem",
+                  fontSize: "0.72rem",
                   textTransform: "uppercase",
                   letterSpacing: "0.15em",
-                  color: "#232323",
+                  color: scrolled ? "#232323" : "#F5F2ED",
                   textDecoration: "none",
                   position: "relative",
                   paddingBottom: "4px",
+                  transition: "color 0.4s ease",
                 }}
-                className="nav-link"
+                className={`nav-link ${scrolled ? "nav-link--dark" : "nav-link--light"}`}
               >
                 {label}
               </Link>
@@ -151,79 +152,76 @@ export default function Navbar() {
           }}
         >
           <motion.span
-            animate={
-              menuOpen
-                ? { rotate: 45, y: 7, width: "24px" }
-                : { rotate: 0, y: 0, width: "24px" }
-            }
+            animate={menuOpen ? { rotate: 45, y: 7, width: "24px", backgroundColor: "#F5F2ED" } : { rotate: 0, y: 0, width: "24px", backgroundColor: "#232323" }}
             transition={{ duration: 0.3 }}
-            style={{
-              display: "block",
-              height: "1px",
-              backgroundColor: "#232323",
-              transformOrigin: "center",
-            }}
+            style={{ display: "block", height: "1px", transformOrigin: "center" }}
           />
           <motion.span
-            animate={
-              menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }
-            }
+            animate={menuOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.2 }}
-            style={{
-              display: "block",
-              height: "1px",
-              width: "16px",
-              backgroundColor: "#232323",
-            }}
+            style={{ display: "block", height: "1px", width: "16px", backgroundColor: scrolled ? "#232323" : "#F5F2ED" }}
           />
           <motion.span
-            animate={
-              menuOpen
-                ? { rotate: -45, y: -7, width: "24px" }
-                : { rotate: 0, y: 0, width: "24px" }
-            }
+            animate={menuOpen ? { rotate: -45, y: -7, width: "24px", backgroundColor: "#F5F2ED" } : { rotate: 0, y: 0, width: "24px", backgroundColor: "#232323" }}
             transition={{ duration: 0.3 }}
-            style={{
-              display: "block",
-              height: "1px",
-              backgroundColor: "#232323",
-              transformOrigin: "center",
-            }}
+            style={{ display: "block", height: "1px", transformOrigin: "center" }}
           />
         </button>
       </header>
 
-      {/* ── Mobile full-screen overlay nav ── */}
+      {/* ── Mobile full-screen overlay nav — dark, atmospheric ── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             key="mobile-menu"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ clipPath: "inset(0 0 100% 0)" }}
+            animate={{ clipPath: "inset(0 0 0% 0)" }}
+            exit={{ clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
             style={{
               position: "fixed",
               inset: 0,
-              backgroundColor: "#F5F2ED",
+              backgroundColor: "#1a1a1a",
               zIndex: 999,
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
+              alignItems: "flex-start",
               justifyContent: "center",
-              gap: "40px",
+              padding: "0 clamp(32px, 8vw, 80px)",
+              gap: "0px",
+              overflow: "hidden",
             }}
           >
-            {/* Custom Instagram Mobile Link */}
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 60 }}
-              transition={{
-                duration: 0.4,
-                delay: 0, // Appears first
-                ease: [0.76, 0, 0.24, 1],
+            {/* Blurred hero image at low opacity for atmosphere */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage: "url('https://res.cloudinary.com/crafteako/image/upload/f_auto,q_10,w_400/crafteako/hero/hero-bg')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                filter: "blur(24px) saturate(0.4)",
+                opacity: 0.18,
+                transform: "scale(1.1)", // prevents blur edge artifacts
               }}
+            />
+
+            {/* Dark scrim over the blurred image */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: "linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%)",
+              }}
+            />
+
+            {/* Instagram link */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              style={{ position: "relative", zIndex: 1, marginBottom: "8px" }}
             >
               <a
                 href="https://www.instagram.com/crafteako"
@@ -232,48 +230,93 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 style={{
                   fontFamily: "var(--font-playfair)",
-                  fontSize: "clamp(2rem, 8vw, 4rem)",
-                  color: "#232323",
+                  fontSize: "clamp(2rem, 7vw, 3.5rem)",
+                  color: "rgba(245,242,237,0.45)",
                   textDecoration: "none",
                   fontWeight: 400,
-                  letterSpacing: "-0.01em",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "16px",
+                  letterSpacing: "-0.02em",
+                  display: "block",
+                  lineHeight: 1.3,
+                  transition: "color 0.25s ease",
                 }}
+                className="mobile-nav-link"
               >
-                Instagram
+                Instagram ↗
               </a>
             </motion.div>
+
+            {/* Thin divider */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              exit={{ scaleX: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                position: "relative",
+                zIndex: 1,
+                width: "100%",
+                height: "1px",
+                backgroundColor: "rgba(245,242,237,0.1)",
+                transformOrigin: "left",
+                marginBottom: "24px",
+                marginTop: "8px",
+              }}
+            />
 
             {NAV_LINKS.map(({ label, href }, i) => (
               <motion.div
                 key={label}
-                initial={{ opacity: 0, x: 60 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 60 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
                 transition={{
                   duration: 0.4,
-                  delay: (i + 1) * 0.08, // Offset by 1 because of Instagram
-                  ease: [0.76, 0, 0.24, 1],
+                  delay: 0.2 + i * 0.07,
+                  ease: [0.16, 1, 0.3, 1],
                 }}
+                style={{ position: "relative", zIndex: 1 }}
               >
                 <Link
                   href={href}
                   onClick={() => setMenuOpen(false)}
                   style={{
                     fontFamily: "var(--font-playfair)",
-                    fontSize: "clamp(2rem, 8vw, 4rem)",
-                    color: "#232323",
+                    fontSize: "clamp(2rem, 7vw, 3.5rem)",
+                    color: "#F5F2ED",
                     textDecoration: "none",
                     fontWeight: 400,
-                    letterSpacing: "-0.01em",
+                    letterSpacing: "-0.02em",
+                    display: "block",
+                    lineHeight: 1.3,
+                    transition: "color 0.25s ease, opacity 0.25s ease",
                   }}
+                  className="mobile-nav-link"
                 >
                   {label}
                 </Link>
               </motion.div>
             ))}
+
+            {/* Bottom meta — studio name */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, delay: 0.55 }}
+              style={{
+                position: "absolute",
+                bottom: "clamp(24px, 4vw, 48px)",
+                left: "clamp(32px, 8vw, 80px)",
+                zIndex: 1,
+                fontFamily: "var(--font-inter)",
+                fontSize: "0.6rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.35em",
+                color: "rgba(245,242,237,0.25)",
+              }}
+            >
+              Crafteako · Est. 2022
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -287,15 +330,20 @@ export default function Navbar() {
           left: 0;
           width: 0;
           height: 1px;
-          background-color: #232323;
           transition: width 0.3s ease;
         }
+        .nav-link--dark::after  { background-color: #232323; }
+        .nav-link--light::after { background-color: #F5F2ED; }
         .nav-link:hover::after {
           width: 100%;
         }
-        
+
         .nav-icon-link:hover {
-          opacity: 0.6 !important;
+          opacity: 0.55 !important;
+        }
+
+        .mobile-nav-link:hover {
+          opacity: 0.7 !important;
         }
 
         @media (max-width: 767px) {

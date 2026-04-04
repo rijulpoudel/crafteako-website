@@ -97,7 +97,7 @@ export default function PortfolioPage() {
               color: "#232323",
               marginBottom: "24px",
               fontWeight: 400,
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.04em",
             }}
           >
             Portfolio
@@ -148,7 +148,7 @@ export default function PortfolioPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     format="auto"
                     quality="auto"
-                    className="portfolio-image"
+                    className="portfolio-image img-grade"
                     style={{ width: "100%", height: "auto", display: "block" }}
                     placeholder="blur"
                     blurDataURL={img.blur}
@@ -334,10 +334,11 @@ export default function PortfolioPage() {
         }
         
         .portfolio-item .portfolio-image {
-          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .portfolio-item:hover .portfolio-image {
           transform: scale(1.04);
+          filter: saturate(1.14) contrast(1.05);
         }
         
         /* Subtle overlay with text at bottom */

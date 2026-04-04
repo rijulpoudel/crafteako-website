@@ -4,33 +4,22 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { CldImage } from "next-cloudinary";
 import { motion, AnimatePresence, useScroll, useTransform, type Variants } from "framer-motion";
+import SplitText from "@/components/ui/SplitText";
 
 const ROTATING_WORDS = ["vision", "moments", "celebrations"];
 
 const EASE: [number, number, number, number] = [0.76, 0, 0.24, 1];
 
 const wordVariants: Variants = {
-  enter: {
-    y: 80,
-    opacity: 0,
-  },
-  animate: {
-    y: 0,
-    opacity: 1,
-    transition: { duration: 0.8, ease: EASE },
-  },
-  exit: {
-    y: -80,
-    opacity: 0,
-    transition: { duration: 0.8, ease: EASE },
-  },
+  enter: { y: 80, opacity: 0 },
+  animate: { y: 0, opacity: 1, transition: { duration: 0.8, ease: EASE } },
+  exit:  { y: -80, opacity: 0, transition: { duration: 0.8, ease: EASE } },
 };
 
 export default function HeroSection() {
   const [wordIndex, setWordIndex] = useState(0);
   const containerRef = useRef<HTMLElement>(null);
 
-  // Rotate word every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setWordIndex((i) => (i + 1) % ROTATING_WORDS.length);
@@ -38,25 +27,17 @@ export default function HeroSection() {
     return () => clearInterval(interval);
   }, []);
 
-  // Set up scroll animations for the text closing gap
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  // Top text translates down as user scrolls
-  const topTextY = useTransform(scrollYProgress, [0, 0.4], ["0vh", "30vh"]);
+  const topTextY       = useTransform(scrollYProgress, [0, 0.4], ["0vh", "30vh"]);
   const topTextOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0]);
-
-  // Middle word fades out
   const middleTextOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0]);
-
-  // Bottom text translates up as user scrolls
-  const bottomTextY = useTransform(scrollYProgress, [0, 0.4], ["0vh", "-30vh"]);
+  const bottomTextY       = useTransform(scrollYProgress, [0, 0.4], ["0vh", "-30vh"]);
   const bottomTextOpacity = useTransform(scrollYProgress, [0.1, 0.3], [1, 0]);
-
-  // Initial scroll indicator fades early
-  const indicatorOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const indicatorOpacity  = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
   return (
     <section
@@ -65,14 +46,14 @@ export default function HeroSection() {
       style={{
         position: "relative",
         width: "100%",
-        height: "150vh", // The photo is 1.5x screen height, allowing normal scroll
-        overflow: "hidden", 
+        height: "150vh",
+        overflow: "hidden",
       }}
     >
-      {/* Full-bleed background image filling the 150vh container perfectly */}
+      {/* Full-bleed background */}
       <CldImage
         src="crafteako/hero/hero-bg"
-        alt="Crafteako hero — wedding photography"
+        alt="Crafteako hero — wedding photography, a couple embracing in soft golden light"
         fill
         priority={true}
         sizes="100vw"
@@ -84,7 +65,7 @@ export default function HeroSection() {
         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/wAARCAAIAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABgUEB//EAB8QAAICAQUBAAAAAAAAAAAAAAECAAMEERIhMf/EABQBAQAAAAAAAAAAAAAAAAAAAAD/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oAMBAAIRAxEAPwCl3FmkS2sMxALRiujSj2K9cj6gRJnR2YMbcWFIIJ4IIPIgg8EEHggg/9k="
       />
 
-      {/* Subtle bottom gradient to ensure text readability ONLY at the bottom, restoring original clear look on top */}
+      {/* Bottom gradient for text readability */}
       <div
         style={{
           position: "absolute",
@@ -94,8 +75,7 @@ export default function HeroSection() {
         }}
       />
 
-      {/* --- INITIAL HERO TEXT --- */}
-      {/* Container is explicitly 100vh so the text is vertically centered in the INITIAL viewport view */}
+      {/* ── INITIAL HERO TEXT (first 100vh) ── */}
       <div
         style={{
           position: "absolute",
@@ -120,24 +100,24 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             style={{
               fontFamily: "var(--font-inter)",
-              fontSize: "0.65rem",
+              fontSize: "0.6rem",
               textTransform: "uppercase",
-              letterSpacing: "0.5em",
+              letterSpacing: "0.35em",
               color: "#ffffff",
               textShadow: "0 1px 6px rgba(0,0,0,0.6)",
-              marginBottom: "16px",
+              marginBottom: "20px",
             }}
           >
             CRAFTEAKO STUDIO
           </motion.p>
         </motion.div>
 
-        {/* Line 2 */}
+        {/* Line 2 — split-text reveal */}
         <motion.div style={{ y: topTextY, opacity: topTextOpacity }}>
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.1, delay: 0.35 }}
             style={{
               fontFamily: "var(--font-playfair)",
               fontSize: "clamp(3.5rem, 8vw, 8rem)",
@@ -145,10 +125,15 @@ export default function HeroSection() {
               textShadow: "0 1px 6px rgba(0,0,0,0.6)",
               fontWeight: 400,
               lineHeight: 1.15,
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.04em",
             }}
           >
-            Bringing your
+            <SplitText
+              text="Bringing your"
+              delay={0.4}
+              stagger={0.08}
+              animateOnMount
+            />
           </motion.p>
         </motion.div>
 
@@ -179,7 +164,7 @@ export default function HeroSection() {
                 textShadow: "0 1px 6px rgba(0,0,0,0.6)",
                 fontWeight: 400,
                 lineHeight: 1.15,
-                letterSpacing: "-0.01em",
+                letterSpacing: "-0.04em",
                 position: "absolute",
               }}
             >
@@ -188,12 +173,12 @@ export default function HeroSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Line 4 */}
+        {/* Line 4 — split-text reveal */}
         <motion.div style={{ y: bottomTextY, opacity: bottomTextOpacity }}>
           <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.1, delay: 0.5 }}
             style={{
               fontFamily: "var(--font-playfair)",
               fontSize: "clamp(3.5rem, 8vw, 8rem)",
@@ -201,15 +186,20 @@ export default function HeroSection() {
               textShadow: "0 1px 6px rgba(0,0,0,0.6)",
               fontWeight: 400,
               lineHeight: 1.15,
-              letterSpacing: "-0.01em",
+              letterSpacing: "-0.04em",
             }}
           >
-            to life, one pixel at a time.
+            <SplitText
+              text="to life."
+              delay={0.55}
+              stagger={0.09}
+              animateOnMount
+            />
           </motion.p>
         </motion.div>
       </div>
 
-      {/* --- SECOND PHASE CONTENT (Sits at the very bottom of the 150vh photo) --- */}
+      {/* ── SECOND PHASE — bottom of 150vh photo ── */}
       <div
         style={{
           position: "absolute",
@@ -227,7 +217,6 @@ export default function HeroSection() {
           gap: "36px",
         }}
       >
-        {/* White elegant line */}
         <div
           style={{
             width: "100%",
@@ -236,7 +225,6 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Elegant subheadline */}
         <h2
           style={{
             fontFamily: "var(--font-inter)",
@@ -244,14 +232,13 @@ export default function HeroSection() {
             color: "#ffffff",
             fontWeight: 300,
             lineHeight: 1.5,
-            letterSpacing: "0.04em",
+            letterSpacing: "0.03em",
             textShadow: "0 1px 6px rgba(0,0,0,0.6)",
           }}
         >
           Celebrating your milestone with artistry, intention, and a story worth keeping.
         </h2>
 
-        {/* Minimal bordered button */}
         <Link
           href="/contact"
           style={{
@@ -260,15 +247,14 @@ export default function HeroSection() {
             backgroundColor: "transparent",
             color: "#ffffff",
             fontFamily: "var(--font-inter)",
-            fontSize: "0.75rem",
+            fontSize: "0.72rem",
             fontWeight: 400,
             textDecoration: "none",
             textTransform: "uppercase",
-            letterSpacing: "0.25em",
+            letterSpacing: "0.28em",
             border: "1px solid rgba(255,255,255,0.7)",
             borderRadius: "2px",
-            cursor: "pointer",
-            transition: "border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease",
+            transition: "border-color 0.3s ease, background-color 0.3s ease",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.12)";
@@ -283,52 +269,52 @@ export default function HeroSection() {
         </Link>
       </div>
 
-      {/* Scroll indicator — bottom of first viewport (100vh) */}
+      {/* ── Refined scroll indicator — animated dot on a line ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
+        transition={{ duration: 0.8, delay: 1.4 }}
         style={{
           position: "absolute",
-          top: "calc(100vh - 80px)", // Place it just above the bottom fold of the first 100vh
+          top: "calc(100vh - 88px)",
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "8px",
-          opacity: indicatorOpacity,
+          opacity: indicatorOpacity as unknown as number,
         }}
       >
-        <motion.div
-          animate={{ opacity: [1, 0.4, 1] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        {/* Static vertical rail */}
+        <div
           style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "8px",
+            width: "1px",
+            height: "56px",
+            backgroundColor: "rgba(255,255,255,0.25)",
+            position: "relative",
+            overflow: "hidden",
           }}
         >
+          {/* Sliding dot */}
           <motion.div
-            initial={{ height: 0 }}
-            animate={{ height: 48 }}
-            transition={{ duration: 0.9, delay: 1.4, ease: "easeOut" }}
-            style={{ width: "1px", backgroundColor: "#FFFFFF" }}
-          />
-          <p
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontSize: "0.6rem",
-              color: "#FFFFFF",
-              textTransform: "uppercase",
-              letterSpacing: "0.2em",
+            animate={{ y: ["0%", "100%"] }}
+            transition={{
+              duration: 1.4,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatDelay: 0.3,
             }}
-          >
-            scroll
-          </p>
-        </motion.div>
+            style={{
+              width: "1px",
+              height: "40%",
+              backgroundColor: "#ffffff",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+          />
+        </div>
       </motion.div>
     </section>
   );
