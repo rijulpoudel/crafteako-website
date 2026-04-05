@@ -17,7 +17,7 @@ const ROW_2 = [
   "Class of 2026",
   "Graduation",
   "Portraits",
-  "Columbus OH",
+  "Lawrence KS",
   "Ceremonies",
   "Photography & Film",
   "Book Now",

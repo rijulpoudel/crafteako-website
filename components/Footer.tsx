@@ -270,7 +270,7 @@ export default function Footer() {
                   marginBottom: "8px",
                 }}
               >
-                info@crafteako.com
+                hello@crafteako.com
               </p>
               <p
                 style={{

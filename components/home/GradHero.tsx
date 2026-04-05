@@ -15,8 +15,8 @@ export default function GradHero() {
     offset: ["start start", "end start"],
   });
 
-  const photoY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
-  const textY   = useTransform(scrollYProgress, [0, 1], ["0%", "6%"]);
+  const photoY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
+  const textY   = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
 
   return (
     <section
@@ -26,33 +26,30 @@ export default function GradHero() {
         width: "100%",
         height: "100vh",
         minHeight: "680px",
-        backgroundColor: "#111111",
+        backgroundColor: "#0d1117",
         overflow: "hidden",
         display: "flex",
       }}
     >
       {/* ── LEFT: Text panel ── */}
-      <motion.div
-        style={{ y: textY }}
-        className="hero-text-panel"
-      >
+      <motion.div style={{ y: textY }} className="hero-text-panel">
+
         {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           className="hero-badge"
         >
           <span className="hero-badge-dot" />
-          Class of 2026 · Now Booking
+          Lawrence, KS · Bookings Open
         </motion.div>
 
-        {/* Main headline */}
+        {/* Main headline — each line in its own overflow container */}
         <div className="hero-headline">
-          {/* Line 1 */}
-          <div style={{ overflow: "hidden" }}>
+          <div className="hero-line-wrap">
             <motion.p
-              initial={{ y: "105%" }}
+              initial={{ y: "108%" }}
               animate={{ y: "0%" }}
               transition={{ duration: 0.85, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="hero-line hero-line--normal"
@@ -60,10 +57,9 @@ export default function GradHero() {
               You worked
             </motion.p>
           </div>
-          {/* Line 2 */}
-          <div style={{ overflow: "hidden" }}>
+          <div className="hero-line-wrap">
             <motion.p
-              initial={{ y: "105%" }}
+              initial={{ y: "108%" }}
               animate={{ y: "0%" }}
               transition={{ duration: 0.85, delay: 0.56, ease: [0.16, 1, 0.3, 1] }}
               className="hero-line hero-line--italic"
@@ -71,10 +67,9 @@ export default function GradHero() {
               four years
             </motion.p>
           </div>
-          {/* Line 3 */}
-          <div style={{ overflow: "hidden" }}>
+          <div className="hero-line-wrap">
             <motion.p
-              initial={{ y: "105%" }}
+              initial={{ y: "108%" }}
               animate={{ y: "0%" }}
               transition={{ duration: 0.85, delay: 0.67, ease: [0.16, 1, 0.3, 1] }}
               className="hero-line hero-line--normal"
@@ -86,73 +81,69 @@ export default function GradHero() {
 
         {/* Descriptor */}
         <motion.p
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="hero-descriptor"
         >
-          Graduation photography that honours the journey.
+          Graduation photography based in Lawrence, KS.
           <br />
-          Cinematic. Personal. Yours.
+          We photograph people, not events.
         </motion.p>
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
           className="hero-ctas"
         >
           <Link href="/contact" className="hero-btn hero-btn--primary">
             Book a Session
           </Link>
           <Link href="/portfolio" className="hero-btn hero-btn--ghost">
-            See the Work ↓
+            See the work
           </Link>
         </motion.div>
 
-        {/* Stats strip */}
+        {/* Stats */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.3 }}
+          transition={{ duration: 0.8, delay: 1.25 }}
           className="hero-stats"
         >
-          {["200+ sessions", "Columbus, OH", "Next-day gallery"].map((s, i) => (
+          {["Est. 2022", "100+ sessions", "Next-day delivery"].map((s, i) => (
             <span key={i} className="hero-stat">
               {s}
-              {i < 2 && <span className="hero-stat-dot">·</span>}
+              {i < 2 && <span className="hero-stat-sep">·</span>}
             </span>
           ))}
         </motion.div>
       </motion.div>
 
       {/* ── RIGHT: Photo panel ── */}
-      <motion.div
-        style={{ y: photoY }}
-        className="hero-photo-panel"
-      >
+      <motion.div style={{ y: photoY }} className="hero-photo-panel">
         <CldImage
           src="crafteako/hero/hero-bg"
-          alt="Graduate celebrating their achievement — captured by Crafteako"
+          alt="Graduate on campus — Crafteako photography, Lawrence, KS"
           fill
           priority
           sizes="(max-width: 767px) 100vw, 52vw"
           format="auto"
-          quality="auto"
+          quality="95"
           style={{ objectFit: "cover", objectPosition: "center top" }}
           placeholder="blur"
           blurDataURL={BLUR}
         />
-        {/* Left feather — blends photo into text panel */}
+        {/* Feather left edge */}
         <div className="hero-photo-feather" />
       </motion.div>
 
-      {/* Mobile overlay for readability */}
+      {/* Mobile scrim */}
       <div className="hero-mobile-overlay" />
 
       <style>{`
-        /* ── LAYOUT ── */
         .hero-text-panel {
           position: relative;
           z-index: 2;
@@ -162,14 +153,13 @@ export default function GradHero() {
           flex-direction: column;
           justify-content: center;
           padding: 0 clamp(32px, 6vw, 96px);
-          gap: 0;
         }
         .hero-photo-panel {
           position: absolute;
           right: 0;
           top: 0;
           width: 52%;
-          height: 115%; /* taller than viewport for parallax room */
+          height: 115%;
           overflow: hidden;
         }
 
@@ -178,14 +168,14 @@ export default function GradHero() {
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          padding: 6px 14px;
-          border: 1px solid rgba(200, 169, 110, 0.45);
+          padding: 7px 16px;
+          border: 1px solid rgba(52, 77, 102, 0.6);
           border-radius: 999px;
           font-family: var(--font-inter);
-          font-size: 0.65rem;
-          letter-spacing: 0.12em;
+          font-size: 0.63rem;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: #C8A96E;
+          color: #7BAAC8;
           margin-bottom: 36px;
           width: fit-content;
         }
@@ -193,18 +183,25 @@ export default function GradHero() {
           width: 6px;
           height: 6px;
           border-radius: 50%;
-          background: #C8A96E;
-          animation: pulse-dot 2s ease-in-out infinite;
+          background: #344D66;
+          flex-shrink: 0;
+          animation: pulse-dot 2.4s ease-in-out infinite;
         }
         @keyframes pulse-dot {
           0%, 100% { opacity: 1; transform: scale(1); }
-          50%       { opacity: 0.4; transform: scale(0.7); }
+          50%       { opacity: 0.3; transform: scale(0.65); }
         }
 
         /* ── HEADLINE ── */
-        .hero-headline {
-          margin-bottom: 32px;
+        .hero-headline { margin-bottom: 28px; }
+
+        /* Give each overflow container room for descenders */
+        .hero-line-wrap {
+          overflow: hidden;
+          padding-bottom: 0.12em;
+          margin-bottom: -0.12em;
         }
+
         .hero-line {
           font-family: var(--font-playfair);
           font-size: clamp(3.2rem, 5.5vw, 6.5rem);
@@ -213,59 +210,69 @@ export default function GradHero() {
           letter-spacing: -0.04em;
           color: #F5F2ED;
           margin: 0;
+          display: block;
         }
         .hero-line--italic {
           font-style: italic;
-          color: #C8A96E;
+          color: #7BAAC8;
         }
 
         /* ── DESCRIPTOR ── */
         .hero-descriptor {
           font-family: var(--font-inter);
-          font-size: clamp(0.85rem, 1.1vw, 1rem);
+          font-size: clamp(0.82rem, 1.05vw, 0.95rem);
           font-weight: 300;
-          line-height: 1.75;
-          color: rgba(245, 242, 237, 0.55);
+          line-height: 1.8;
+          color: rgba(245,242,237,0.5);
           margin-bottom: 40px;
-          max-width: 380px;
+          max-width: 360px;
+          letter-spacing: 0.01em;
         }
 
         /* ── CTAs ── */
         .hero-ctas {
           display: flex;
-          gap: 16px;
+          gap: 14px;
           flex-wrap: wrap;
-          margin-bottom: 56px;
+          margin-bottom: 52px;
+          align-items: center;
         }
         .hero-btn {
           display: inline-block;
           text-decoration: none;
           font-family: var(--font-inter);
-          font-size: 0.72rem;
+          font-size: 0.7rem;
           font-weight: 400;
           text-transform: uppercase;
-          letter-spacing: 0.2em;
+          letter-spacing: 0.18em;
           padding: 14px 32px;
           border-radius: 2px;
           transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+          white-space: nowrap;
         }
         .hero-btn--primary {
-          background: #C8A96E;
-          color: #111111;
-          border: 1px solid #C8A96E;
+          background: #344D66;
+          color: #F5F2ED;
+          border: 1px solid #344D66;
         }
         .hero-btn--primary:hover {
-          background: transparent;
-          color: #C8A96E;
+          background: #2a3d52;
+          border-color: #2a3d52;
         }
         .hero-btn--ghost {
           background: transparent;
-          color: rgba(245, 242, 237, 0.75);
-          border: 1px solid rgba(245, 242, 237, 0.25);
+          color: rgba(245,242,237,0.6);
+          border: 1px solid rgba(245,242,237,0.18);
+          padding-left: 0;
+          padding-right: 0;
+          border: none;
+          text-decoration: underline;
+          text-underline-offset: 4px;
+          text-decoration-color: rgba(245,242,237,0.3);
         }
         .hero-btn--ghost:hover {
-          border-color: rgba(245, 242, 237, 0.65);
           color: #F5F2ED;
+          text-decoration-color: rgba(245,242,237,0.7);
         }
 
         /* ── STATS ── */
@@ -277,16 +284,14 @@ export default function GradHero() {
         }
         .hero-stat {
           font-family: var(--font-inter);
-          font-size: 0.65rem;
-          letter-spacing: 0.08em;
-          color: rgba(245, 242, 237, 0.3);
+          font-size: 0.63rem;
+          letter-spacing: 0.06em;
+          color: rgba(245,242,237,0.28);
           display: flex;
           align-items: center;
           gap: 10px;
         }
-        .hero-stat-dot {
-          color: rgba(200, 169, 110, 0.5);
-        }
+        .hero-stat-sep { color: rgba(52,77,102,0.6); }
 
         /* ── PHOTO FEATHER ── */
         .hero-photo-feather {
@@ -294,16 +299,12 @@ export default function GradHero() {
           left: 0;
           top: 0;
           bottom: 0;
-          width: 200px;
-          background: linear-gradient(to right, #111111 0%, transparent 100%);
+          width: 220px;
+          background: linear-gradient(to right, #0d1117 0%, transparent 100%);
           pointer-events: none;
           z-index: 1;
         }
-
-        /* ── MOBILE ── */
-        .hero-mobile-overlay {
-          display: none;
-        }
+        .hero-mobile-overlay { display: none; }
 
         @media (max-width: 767px) {
           .hero-text-panel {
@@ -324,22 +325,14 @@ export default function GradHero() {
             inset: 0;
             background: linear-gradient(
               to right,
-              rgba(17,17,17,0.92) 0%,
-              rgba(17,17,17,0.75) 55%,
-              rgba(17,17,17,0.4) 100%
+              rgba(13,17,23,0.94) 0%,
+              rgba(13,17,23,0.78) 55%,
+              rgba(13,17,23,0.35) 100%
             );
             z-index: 2;
           }
-          .hero-line {
-            font-size: clamp(2.8rem, 11vw, 4rem);
-          }
-          .hero-ctas {
-            flex-direction: column;
-            gap: 12px;
-          }
-          .hero-btn {
-            text-align: center;
-          }
+          .hero-line { font-size: clamp(2.8rem, 11vw, 4rem); }
+          .hero-ctas { flex-direction: column; align-items: flex-start; gap: 16px; }
         }
       `}</style>
     </section>

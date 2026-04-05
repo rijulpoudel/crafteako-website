@@ -53,10 +53,10 @@ export default function HowItWorks() {
 
       {/* ── STATS ROW ── */}
       <div className="hiw-stats">
-        <StatCounter value="200" suffix="+" label="grad sessions" />
-        <StatCounter value="5★"  suffix=""  label="average rating" />
-        <StatCounter value="24h" suffix=""  label="gallery delivery" />
-        <StatCounter value="4"   suffix=" yrs" label="in the industry" />
+        <StatCounter value="100" suffix="+"  label="sessions shot" />
+        <StatCounter value="5★"  suffix=""   label="average rating" />
+        <StatCounter value="24"  suffix="hr" label="gallery delivery" />
+        <StatCounter value="2022" suffix=""  label="est. Lawrence, KS" />
       </div>
 
       {/* ── DIVIDER ── */}

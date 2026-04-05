@@ -53,7 +53,14 @@ export default function SplitText({
       {words.map((word, i) => (
         <span
           key={i}
-          style={{ display: "inline-block", overflow: "hidden", verticalAlign: "bottom" }}
+          style={{
+            display: "inline-block",
+            overflow: "hidden",
+            verticalAlign: "bottom",
+            /* extra room below the baseline so descenders (g, y, p…) aren't clipped */
+            paddingBottom: "0.22em",
+            marginBottom: "-0.22em",
+          }}
         >
           <motion.span
             style={{ display: "inline-block" }}

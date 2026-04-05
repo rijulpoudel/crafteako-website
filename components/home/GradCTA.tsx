@@ -112,7 +112,7 @@ export default function GradCTA() {
           <span className="gcta-trust-sep">·</span>
           <span className="gcta-trust-item">Reschedule-friendly</span>
           <span className="gcta-trust-sep">·</span>
-          <span className="gcta-trust-item">Columbus, OH & surrounding</span>
+          <span className="gcta-trust-item">Lawrence, KS & surrounding</span>
         </motion.div>
       </div>
 
@@ -161,13 +161,13 @@ export default function GradCTA() {
         .gcta-badge {
           display: inline-block;
           padding: 6px 18px;
-          background: rgba(200,169,110,0.12);
-          border: 1px solid rgba(200,169,110,0.35);
+          background: rgba(52,77,102,0.12);
+          border: 1px solid rgba(52,77,102,0.35);
           border-radius: 999px;
           font-family: var(--font-inter);
           font-size: 0.65rem;
           letter-spacing: 0.1em;
-          color: #C8A96E;
+          color: #344D66;
           margin-bottom: 40px;
         }
 
@@ -185,7 +185,7 @@ export default function GradCTA() {
         }
         .gcta-headline--italic {
           font-style: italic;
-          color: #C8A96E;
+          color: #344D66;
         }
 
         .gcta-sub {
@@ -218,13 +218,13 @@ export default function GradCTA() {
           transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .gcta-btn--primary {
-          background: #C8A96E;
-          color: #111111;
-          border: 1px solid #C8A96E;
+          background: #344D66;
+          color: #F5F2ED;
+          border: 1px solid #344D66;
         }
         .gcta-btn--primary:hover {
           background: transparent;
-          color: #C8A96E;
+          color: #344D66;
         }
         .gcta-btn--ghost {
           background: transparent;
@@ -250,7 +250,7 @@ export default function GradCTA() {
           color: rgba(245,242,237,0.25);
         }
         .gcta-trust-sep {
-          color: rgba(200,169,110,0.3);
+          color: rgba(52,77,102,0.3);
         }
 
         @media (max-width: 540px) {

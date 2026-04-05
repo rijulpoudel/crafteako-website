@@ -76,7 +76,7 @@ export default function GradPackages() {
         >
           Simple pricing.
           <br />
-          <span style={{ color: "#C8A96E" }}>No surprises.</span>
+          <span style={{ color: "#344D66" }}>No surprises.</span>
         </motion.h2>
         <motion.p
           className="pkg-sub"
@@ -146,7 +146,7 @@ export default function GradPackages() {
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.4 }}
       >
-        All sessions take place in Columbus, OH and surrounding areas. Travel available on request.
+        All sessions take place in Lawrence, KS and surrounding areas. Travel available on request.
         <Link href="/new-grads-2026" className="pkg-note-link"> See 2026 grad deals →</Link>
       </motion.p>
 
@@ -168,7 +168,7 @@ export default function GradPackages() {
           font-size: 0.62rem;
           text-transform: uppercase;
           letter-spacing: 0.4em;
-          color: rgba(200,169,110,0.6);
+          color: rgba(52,77,102,0.6);
           margin-bottom: 20px;
         }
 
@@ -214,12 +214,12 @@ export default function GradPackages() {
           border-color: rgba(245,242,237,0.18);
         }
         .pkg-card--featured {
-          background: rgba(200,169,110,0.08);
-          border-color: rgba(200,169,110,0.35);
+          background: rgba(52,77,102,0.08);
+          border-color: rgba(52,77,102,0.35);
           transform: translateY(-8px);
         }
         .pkg-card--featured:hover {
-          border-color: rgba(200,169,110,0.6);
+          border-color: rgba(52,77,102,0.6);
         }
 
         .pkg-badge {
@@ -227,8 +227,8 @@ export default function GradPackages() {
           top: -13px;
           left: 50%;
           transform: translateX(-50%);
-          background: #C8A96E;
-          color: #111111;
+          background: #344D66;
+          color: #F5F2ED;
           font-family: var(--font-inter);
           font-size: 0.58rem;
           font-weight: 500;
@@ -243,7 +243,7 @@ export default function GradPackages() {
           font-family: var(--font-inter);
           font-size: 0.6rem;
           letter-spacing: 0.2em;
-          color: rgba(200,169,110,0.5);
+          color: rgba(52,77,102,0.5);
           margin-bottom: 12px;
         }
 
@@ -270,7 +270,7 @@ export default function GradPackages() {
           font-size: clamp(2.5rem, 4vw, 3.2rem);
           font-weight: 400;
           letter-spacing: -0.03em;
-          color: #C8A96E;
+          color: #344D66;
           line-height: 1;
         }
 
@@ -307,7 +307,7 @@ export default function GradPackages() {
           line-height: 1.4;
         }
         .pkg-check {
-          color: #C8A96E;
+          color: #344D66;
           font-size: 0.75rem;
           flex-shrink: 0;
         }
@@ -326,13 +326,13 @@ export default function GradPackages() {
           transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .pkg-btn--gold {
-          background: #C8A96E;
-          color: #111111;
-          border: 1px solid #C8A96E;
+          background: #344D66;
+          color: #F5F2ED;
+          border: 1px solid #344D66;
         }
         .pkg-btn--gold:hover {
           background: transparent;
-          color: #C8A96E;
+          color: #344D66;
         }
         .pkg-btn--outline {
           background: transparent;
@@ -354,14 +354,14 @@ export default function GradPackages() {
           line-height: 1.6;
         }
         .pkg-note-link {
-          color: rgba(200,169,110,0.6);
+          color: rgba(52,77,102,0.6);
           text-decoration: none;
-          border-bottom: 1px solid rgba(200,169,110,0.25);
+          border-bottom: 1px solid rgba(52,77,102,0.25);
           transition: color 0.25s, border-color 0.25s;
         }
         .pkg-note-link:hover {
-          color: #C8A96E;
-          border-color: #C8A96E;
+          color: #344D66;
+          border-color: #344D66;
         }
 
         @media (max-width: 900px) {
