@@ -25,8 +25,8 @@ const BENTO_ITEMS = [
     objectPosition: "center 15%",
   },
   {
-    // Square top-mid — paperplane img-04 is 800×1000 portrait, face upper-third
-    src: projects[1].albumImages[3]?.src ?? projects[1].coverImage,
+    // Square top-mid — paperplane img-06 is 800×1000 portrait, face upper-third
+    src: projects[1].albumImages[6]?.src ?? projects[1].coverImage,
     alt: "Graduation portrait session — University of Kansas",
     project: "Paper Plane",
     type: "Graduation · KU",
@@ -81,7 +81,11 @@ function BentoCell({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: index * 0.07 }}
+      transition={{
+        duration: 0.75,
+        ease: [0.16, 1, 0.3, 1],
+        delay: index * 0.07,
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -99,7 +103,8 @@ function BentoCell({
             style={{
               objectFit: "cover",
               objectPosition: item.objectPosition,
-              transition: "transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s ease",
+              transition:
+                "transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), filter 0.55s ease",
               transform: hovered ? "scale(1.04)" : "scale(1)",
               filter: hovered ? "saturate(1.1) contrast(1.03)" : "none",
             }}
@@ -107,10 +112,7 @@ function BentoCell({
         </div>
 
         {/* Hover overlay */}
-        <div
-          className="bento-overlay"
-          style={{ opacity: hovered ? 1 : 0 }}
-        >
+        <div className="bento-overlay" style={{ opacity: hovered ? 1 : 0 }}>
           <div className="bento-overlay-inner">
             <p className="bento-label">{item.type}</p>
             <p className="bento-name">{item.project}</p>

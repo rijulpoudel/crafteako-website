@@ -21,12 +21,12 @@ export default function GradCTA() {
       {/* Parallax background photo */}
       <motion.div className="gcta-bg" style={{ y: bgY }}>
         <CldImage
-          src="crafteako/projects/paperplane/img-04"
-          alt="Graduate celebrating — a Crafteako session"
+          src="crafteako/projects/sagar/cover"
+          alt="Sagar Shrestha — Crafteako graduation session"
           fill
           sizes="100vw"
           format="auto"
-          quality="auto"
+          quality="90"
           placeholder="blur"
           blurDataURL={BLUR}
           style={{ objectFit: "cover", objectPosition: "center" }}
@@ -161,13 +161,13 @@ export default function GradCTA() {
         .gcta-badge {
           display: inline-block;
           padding: 6px 18px;
-          background: rgba(52,77,102,0.12);
-          border: 1px solid rgba(52,77,102,0.35);
+          background: rgba(123,170,200,0.12);
+          border: 1px solid rgba(123,170,200,0.35);
           border-radius: 999px;
           font-family: var(--font-inter);
           font-size: 0.65rem;
           letter-spacing: 0.1em;
-          color: #344D66;
+          color: #7BAAC8;
           margin-bottom: 40px;
         }
 
@@ -185,7 +185,7 @@ export default function GradCTA() {
         }
         .gcta-headline--italic {
           font-style: italic;
-          color: #344D66;
+          color: #7BAAC8;
         }
 
         .gcta-sub {

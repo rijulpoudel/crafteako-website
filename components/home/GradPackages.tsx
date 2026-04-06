@@ -76,7 +76,7 @@ export default function GradPackages() {
         >
           Simple pricing.
           <br />
-          <span style={{ color: "#344D66" }}>No surprises.</span>
+          <span style={{ color: "#7BAAC8" }}>No surprises.</span>
         </motion.h2>
         <motion.p
           className="pkg-sub"
@@ -168,7 +168,7 @@ export default function GradPackages() {
           font-size: 0.62rem;
           text-transform: uppercase;
           letter-spacing: 0.4em;
-          color: rgba(52,77,102,0.6);
+          color: rgba(123,170,200,0.65);
           margin-bottom: 20px;
         }
 
@@ -270,14 +270,14 @@ export default function GradPackages() {
           font-size: clamp(2.5rem, 4vw, 3.2rem);
           font-weight: 400;
           letter-spacing: -0.03em;
-          color: #344D66;
+          color: #7BAAC8;
           line-height: 1;
         }
 
         .pkg-tagline {
           font-family: var(--font-inter);
           font-size: 0.72rem;
-          color: rgba(245,242,237,0.38);
+          color: rgba(123,170,200,0.75);
           margin-bottom: 24px;
           letter-spacing: 0.02em;
         }
@@ -307,7 +307,7 @@ export default function GradPackages() {
           line-height: 1.4;
         }
         .pkg-check {
-          color: #344D66;
+          color: #7BAAC8;
           font-size: 0.75rem;
           flex-shrink: 0;
         }
@@ -348,20 +348,20 @@ export default function GradPackages() {
           text-align: center;
           font-family: var(--font-inter);
           font-size: 0.72rem;
-          color: rgba(245,242,237,0.25);
+          color: rgba(123,170,200,0.55);
           max-width: 600px;
           margin: 0 auto;
           line-height: 1.6;
         }
         .pkg-note-link {
-          color: rgba(52,77,102,0.6);
+          color: rgba(123,170,200,0.75);
           text-decoration: none;
-          border-bottom: 1px solid rgba(52,77,102,0.25);
+          border-bottom: 1px solid rgba(123,170,200,0.3);
           transition: color 0.25s, border-color 0.25s;
         }
         .pkg-note-link:hover {
-          color: #344D66;
-          border-color: #344D66;
+          color: #7BAAC8;
+          border-color: #7BAAC8;
         }
 
         @media (max-width: 900px) {

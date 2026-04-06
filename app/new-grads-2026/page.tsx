@@ -68,7 +68,7 @@ const GALLERY = [
     objectPosition: "center 10%",
   },
   {
-    src: "crafteako/projects/paperplane/img-04",
+    src: "crafteako/projects/paperplane/img-06",
     alt: "Graduation portrait session — University of Kansas",
     aspect: "4/5",
     objectPosition: "center 15%",
@@ -99,7 +99,13 @@ const GALLERY = [
   },
 ];
 
-function PackageCard({ pkg, index }: { pkg: (typeof PACKAGES)[0]; index: number }) {
+function PackageCard({
+  pkg,
+  index,
+}: {
+  pkg: (typeof PACKAGES)[0];
+  index: number;
+}) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -108,19 +114,23 @@ function PackageCard({ pkg, index }: { pkg: (typeof PACKAGES)[0]; index: number 
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.75, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      transition={{
+        duration: 0.75,
+        delay: index * 0.1,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {pkg.featured && (
-        <div className="pkg-featured-label">Most Requested</div>
-      )}
+      {pkg.featured && <div className="pkg-featured-label">Most Requested</div>}
 
       <div className="pkg-top">
         <p className="pkg-name">{pkg.name}</p>
         <div className="pkg-price-wrap">
           <span className="pkg-price">{pkg.price}</span>
-          {pkg.priceNote && <span className="pkg-price-note">{pkg.priceNote}</span>}
+          {pkg.priceNote && (
+            <span className="pkg-price-note">{pkg.priceNote}</span>
+          )}
         </div>
         <p className="pkg-tagline">{pkg.tagline}</p>
       </div>
@@ -135,18 +145,29 @@ function PackageCard({ pkg, index }: { pkg: (typeof PACKAGES)[0]; index: number 
 
       <ul className="pkg-list">
         {pkg.deliverables.map((item, i) => (
-          <li key={i} className={`pkg-list-item ${i === pkg.deliverables.length - 1 ? "pkg-list-item--faint" : ""}`}>
-            {i < pkg.deliverables.length - 1 && <span className="pkg-check">—</span>}
+          <li
+            key={i}
+            className={`pkg-list-item ${i === pkg.deliverables.length - 1 ? "pkg-list-item--faint" : ""}`}
+          >
+            {i < pkg.deliverables.length - 1 && (
+              <span className="pkg-check">—</span>
+            )}
             {item}
           </li>
         ))}
       </ul>
 
-      <Link href="/contact" className={`pkg-cta ${pkg.featured ? "pkg-cta--featured" : ""}`}>
+      <Link
+        href="/contact"
+        className={`pkg-cta ${pkg.featured ? "pkg-cta--featured" : ""}`}
+      >
         <span>Book this package</span>
         <span
           className="pkg-cta-arrow"
-          style={{ transform: hovered ? "translateX(4px)" : "translateX(0)", transition: "transform 0.25s ease" }}
+          style={{
+            transform: hovered ? "translateX(4px)" : "translateX(0)",
+            transition: "transform 0.25s ease",
+          }}
         >
           →
         </span>
@@ -158,7 +179,6 @@ function PackageCard({ pkg, index }: { pkg: (typeof PACKAGES)[0]; index: number 
 export default function NewGradsPage() {
   return (
     <main style={{ backgroundColor: "#F5F2ED", minHeight: "100vh" }}>
-
       {/* ── HERO ── */}
       <section className="grads-hero">
         {/* Background photo */}
@@ -195,7 +215,11 @@ export default function NewGradsPage() {
             className="grads-hero-h1"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.85,
+              delay: 0.12,
+              ease: [0.16, 1, 0.3, 1],
+            }}
           >
             Four years earned.
             <br />
@@ -206,7 +230,11 @@ export default function NewGradsPage() {
             className="grads-hero-sub"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+            transition={{
+              duration: 0.75,
+              delay: 0.24,
+              ease: [0.16, 1, 0.3, 1],
+            }}
           >
             Graduation photography based in Lawrence, KS.
             <br />
@@ -219,8 +247,12 @@ export default function NewGradsPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link href="/contact" className="grads-btn-primary">Book your session</Link>
-            <a href="#packages" className="grads-btn-ghost">View packages ↓</a>
+            <Link href="/contact" className="grads-btn-primary">
+              Book your session
+            </Link>
+            <a href="#packages" className="grads-btn-ghost">
+              View packages ↓
+            </a>
           </motion.div>
 
           {/* Stats row */}
@@ -307,7 +339,8 @@ export default function NewGradsPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            All packages include a private online gallery, personal print release, and a pre-shoot style consultation.
+            All packages include a private online gallery, personal print
+            release, and a pre-shoot style consultation.
             <br />
             No deposit required to hold your date.
           </motion.p>
@@ -353,7 +386,11 @@ export default function NewGradsPage() {
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.75, delay: (i % 3) * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: 0.75,
+                delay: (i % 3) * 0.08,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               style={{ aspectRatio: photo.aspect }}
             >
               <CldImage
@@ -435,7 +472,11 @@ export default function NewGradsPage() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-30px" }}
-                transition={{ duration: 0.7, delay: i * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  duration: 0.7,
+                  delay: i * 0.12,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
               >
                 <span className="grads-expect-num">{item.num}</span>
                 <h3 className="grads-expect-title">{item.title}</h3>
@@ -771,7 +812,7 @@ export default function NewGradsPage() {
           font-size: clamp(2.4rem, 4vw, 3.2rem);
           font-weight: 400;
           letter-spacing: -0.04em;
-          color: #344D66;
+          color: #7BAAC8;
           line-height: 1;
         }
         .pkg-price-note {
@@ -785,7 +826,7 @@ export default function NewGradsPage() {
           font-size: 0.82rem;
           font-weight: 300;
           line-height: 1.6;
-          color: rgba(228, 225, 219, 0.5);
+          color: rgba(123, 170, 200, 0.8);
           font-style: italic;
         }
         .pkg-meta {
@@ -834,7 +875,7 @@ export default function NewGradsPage() {
           margin-top: 8px;
         }
         .pkg-check {
-          color: #344D66;
+          color: #7BAAC8;
           flex-shrink: 0;
           margin-top: 1px;
         }
