@@ -140,14 +140,14 @@ export default function HowItWorks() {
         .stat-suffix {
           font-style: italic;
           font-size: 0.7em;
-          color: rgba(35,35,35,0.5);
+          color: #344D66;
         }
         .stat-label {
           font-family: var(--font-inter);
           font-size: 0.65rem;
           text-transform: uppercase;
           letter-spacing: 0.25em;
-          color: rgba(35,35,35,0.45);
+          color: #344D66;
         }
 
         .hiw-divider {
@@ -168,7 +168,7 @@ export default function HowItWorks() {
           font-size: 0.62rem;
           text-transform: uppercase;
           letter-spacing: 0.4em;
-          color: rgba(35,35,35,0.4);
+          color: #344D66;
           margin-bottom: 18px;
         }
         .hiw-heading {
@@ -180,7 +180,7 @@ export default function HowItWorks() {
           line-height: 1.2;
         }
         .hiw-heading em {
-          color: rgba(35,35,35,0.5);
+          color: #344D66;
         }
 
         /* ── STEPS ── */
@@ -231,7 +231,7 @@ export default function HowItWorks() {
           font-size: 0.85rem;
           font-weight: 300;
           line-height: 1.7;
-          color: rgba(35,35,35,0.6);
+          color: #344D66;
         }
 
         .hiw-step-arrow {
@@ -241,7 +241,7 @@ export default function HowItWorks() {
           transform: translateY(-50%);
           z-index: 2;
           font-size: 1rem;
-          color: rgba(35,35,35,0.2);
+          color: #344D66;
           background: #F5F2ED;
           padding: 4px;
         }
